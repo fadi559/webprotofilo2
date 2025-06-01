@@ -19,6 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} bg-black text-white min-h-screen`}>
         <AnimatedBackground />
+        
         {children}
       </body>
     </html>

@@ -42,25 +42,6 @@ export default function Home() {
             >
               Full Stack Developer
             </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
-              className="flex gap-4 justify-center"
-            >
-              <a 
-                href="#projects"
-                className="px-8 py-3 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600 transition-all shadow-lg transform hover:scale-105"
-              >
-                View Projects
-              </a>
-              <a 
-                href="#contact"
-                className="px-8 py-3 rounded-lg border border-purple-500 text-purple-400 hover:bg-purple-500/10 transition-all"
-              >
-                Contact Me
-              </a>
-            </motion.div>
           </motion.div>
         </div>
       </section>
