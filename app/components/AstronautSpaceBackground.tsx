@@ -5,6 +5,7 @@ import { Suspense } from 'react';
 import React, { useRef, useEffect } from 'react';
 import { useGLTF, useAnimations } from '@react-three/drei';
 import * as THREE from 'three';
+import { SpaceTelescope } from './SpaceTelescope';
 
 interface SpaceManModelProps {
   scale?: number;
@@ -102,7 +103,7 @@ export default function AstronautSpaceBackground() {
   return (
     <div className="fixed inset-0 -z-10">
       <Canvas
-        camera={{ position: [0, 0, 5], fov: 45 }}
+        camera={{ position: [0, 0, 10], fov: 45 }}
         style={{ background: 'transparent' }}
       >
         <color attach="background" args={['#000000']} />
@@ -119,7 +120,8 @@ export default function AstronautSpaceBackground() {
         />
         
         <Suspense fallback={null}>
-          <SpaceManModel scale={0.5} position={[0, -1, 0]} />
+          {/* <SpaceManModel scale={0.5} position={[-2, -1, 0]} /> */}
+          <SpaceTelescope scale={0.4} position={[2, 0, 0]} />
           <Environment preset="studio" />
           <Stars
             radius={100}
