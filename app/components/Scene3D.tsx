@@ -1,6 +1,5 @@
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls, Sphere, MeshDistortMaterial } from '@react-three/drei'
-import { motion } from 'framer-motion-3d'
 
 export default function Scene3D() {
   return (

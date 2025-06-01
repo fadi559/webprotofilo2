@@ -30,8 +30,8 @@ export default function SpaceBackground() {
       color: string
 
       constructor() {
-        this.x = Math.random() * canvas.width
-        this.y = Math.random() * canvas.height
+        this.x = Math.random() * canvas!.width
+        this.y = Math.random() * canvas!.height
         this.size = Math.random() * 1.5
         this.speed = Math.random() * 0.2
         this.brightness = Math.random()
@@ -43,9 +43,9 @@ export default function SpaceBackground() {
 
       update() {
         this.y += this.speed
-        if (this.y > canvas.height) {
+        if (this.y > canvas!.height) {
           this.y = 0
-          this.x = Math.random() * canvas.width
+          this.x = Math.random() * canvas!.width
         }
         this.opacity = Math.sin(Date.now() * 0.0005 + this.brightness) * 0.5 + 0.5
       }
@@ -79,21 +79,21 @@ export default function SpaceBackground() {
     const drawNebula = () => {
       if (!ctx) return
       const gradient = ctx.createRadialGradient(
-        canvas.width * 0.5, canvas.height * 0.5, 0,
-        canvas.width * 0.5, canvas.height * 0.5, canvas.width * 0.8
+        canvas!.width * 0.5, canvas!.height * 0.5, 0,
+        canvas!.width * 0.5, canvas!.height * 0.5, canvas!.width * 0.8
       )
       gradient.addColorStop(0, 'rgba(147, 51, 234, 0.1)')
       gradient.addColorStop(0.5, 'rgba(236, 72, 153, 0.05)')
       gradient.addColorStop(1, 'transparent')
       ctx.fillStyle = gradient
-      ctx.fillRect(0, 0, canvas.width, canvas.height)
+      ctx.fillRect(0, 0, canvas!.width, canvas!.height)
     }
 
     // Animation loop
     const animate = () => {
       if (!ctx) return
       ctx.fillStyle = 'rgba(17, 24, 39, 0.1)'
-      ctx.fillRect(0, 0, canvas.width, canvas.height)
+      ctx.fillRect(0, 0, canvas!.width, canvas!.height)
 
       drawNebula()
       stars.forEach(star => {

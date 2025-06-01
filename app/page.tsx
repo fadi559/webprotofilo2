@@ -2,6 +2,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 import Navbar from './components/Navbar'
+import AstronautSpaceBackground from './components/AstronautSpaceBackground'
 
 export default function Home() {
   const containerRef = useRef(null)
@@ -16,11 +17,12 @@ export default function Home() {
 
   return (
     <main ref={containerRef} className="min-h-screen relative">
+      <AstronautSpaceBackground />
       <Navbar />
       
       {/* Hero Section */}
       <section id="home" className="h-screen relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 via-transparent to-gray-900/50 z-0"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-purple-900/10 via-transparent to-gray-900/30 z-0"></div>
         <div className="relative z-20 h-full flex items-center justify-center">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -56,10 +58,13 @@ export default function Home() {
         >
           <h2 className="text-4xl font-bold text-center mb-8 gradient-text">About Me</h2>
           <p className="text-gray-300 text-lg text-center max-w-3xl mx-auto leading-relaxed">
-            I'm a passionate full-stack developer with expertise in building modern web applications and mobile solutions.
-            With a strong foundation in both frontend and backend technologies, I create seamless user experiences
-            across web and mobile platforms. My experience with React Native allows me to develop cross-platform
-            mobile applications that deliver native-like performance and user experience.
+           Im a passionate full-stack developer with expertise in building modern web and mobile 
+           applications. My strong foundation in both frontend and backend technologies enables me 
+           to deliver seamless, high-performance user experiences across platforms. I specialize in
+            React Native for cross-platform mobile apps, ensuring native-like performance and a polished
+             user experience. On the web, I leverage frameworks like React and Next.js to craft interactive
+             , dynamic interfaces. On the backend, I build scalable APIs using Node.js, Express, and MongoDB.
+              I thrive on turning ideas into robust, real-world solutions that delight users and exceed expectations.
           </p>
         </motion.div>
       </section>
@@ -200,7 +205,7 @@ export default function Home() {
           <div className="glass p-8 rounded-2xl shadow-2xl">
             <h2 className="text-4xl font-bold mb-8 gradient-text">Get In Touch</h2>
             <p className="text-gray-300 mb-8">
-              I'm always open to new opportunities and collaborations.
+              I&apos;m always open to new opportunities and collaborations.
             </p>
             <motion.a
               whileHover={{ scale: 1.05 }}
