@@ -1,5 +1,5 @@
 "use client";
-import { Canvas } from '@react-three/fiber';
+import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Environment, Stars } from '@react-three/drei';
 import { Suspense } from 'react';
 import React, { useRef, useEffect } from 'react';
@@ -23,14 +23,38 @@ function SpaceManModel(props: SpaceManModelProps) {
   const { nodes, animations } = useGLTF('/models/Astronaut.glb') as unknown as { nodes: GLTFNodes; animations: THREE.AnimationClip[] };
   const { actions } = useAnimations(animations, group);
 
+  // Animate drifting movement and limp pose
+  useFrame(({ clock }) => {
+    if (group.current) {
+      const t = clock.getElapsedTime();
+      // Make the astronaut face the camera (z-axis)
+      group.current.position.x = Math.sin(t * 0.15) * 2;
+      group.current.position.y = Math.cos(t * 0.09) * 1.2 - 1;
+      group.current.position.z = Math.sin(t * 0.07) * 0.5;
+      group.current.rotation.x = 0;
+      group.current.rotation.y = 0;
+      group.current.rotation.z = 0;
+    }
+  });
+
   useEffect(() => {
-    // Play all animations
-    Object.values(actions).forEach((action) => {
-      if (action) {
-        action.play();
-      }
-    });
-  }, [actions]);
+    // Only log bones for user inspection, no custom posing
+    if (nodes.mesh_0 && nodes.mesh_0.skeleton) {
+      console.log('mesh_0 skeleton:', nodes.mesh_0.skeleton);
+      console.log('mesh_0 bones:');
+      nodes.mesh_0.skeleton.bones.forEach(bone => console.log(bone.name));
+    }
+    if (nodes.mesh_1 && nodes.mesh_1.skeleton) {
+      console.log('mesh_1 skeleton:', nodes.mesh_1.skeleton);
+      console.log('mesh_1 bones:');
+      nodes.mesh_1.skeleton.bones.forEach(bone => console.log(bone.name));
+    }
+    if (nodes.mesh_2 && nodes.mesh_2.skeleton) {
+      console.log('mesh_2 skeleton:', nodes.mesh_2.skeleton);
+      console.log('mesh_2 bones:');
+      nodes.mesh_2.skeleton.bones.forEach(bone => console.log(bone.name));
+    }
+  }, [nodes]);
 
   return (
     <group ref={group} {...props} dispose={null}>
@@ -56,6 +80,11 @@ function SpaceManModel(props: SpaceManModelProps) {
                 material={nodes.mesh_2.material}
                 skeleton={nodes.mesh_2.skeleton}
               />
+              {/* Make the visor fully black and opaque */}
+              <mesh position={[0, 0.13, 0.09]} scale={[0.18, 0.18, 0.18]}>
+                <sphereGeometry args={[1, 32, 32]} />
+                <meshStandardMaterial color="#000" transparent={false} opacity={1} />
+              </mesh>
             </group>
           </group>
           <group name="skeletal3">
