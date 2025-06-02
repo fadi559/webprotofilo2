@@ -130,15 +130,24 @@ export default function Home() {
               <div className="p-4 md:p-6">
                 <h3 className="text-lg md:text-xl font-bold mb-2 text-white">React Native Project</h3>
                 <p className="text-gray-300 text-sm md:text-base mb-4">
-                  A mobile application built with React Native, showcasing modern mobile development practices.
+                 A modern job search mobile application built using React Native. It empowers users who are 
+                 looking for work to seamlessly search for job opportunities, apply directly within the app,
+                  and manage their profiles. The app features a fully functional front-end with intuitive 
+                  navigation, user authentication, profile management, and a powerful search feature. The 
+                  back-end (Node.js, MongoDB) supports secure data management, ensuring reliable performance 
+                  and a smooth user experience.
+
+Features:
                 </p>
                 <div className="flex flex-wrap gap-2 mb-4">
                   <span className="px-2 md:px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-xs md:text-sm">React Native</span>
                   <span className="px-2 md:px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-xs md:text-sm">Mobile</span>
+                  <span className="px-2 md:px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-xs md:text-sm">node.Js</span>
+                    <span className="px-2 md:px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-xs md:text-sm">JavaScript</span>
                 </div>
                 <div className="flex gap-4">
-                  <a href="#" className="text-purple-400 hover:text-purple-300 transition-colors text-sm md:text-base">View Demo</a>
-                  <a href="#" className="text-purple-400 hover:text-purple-300 transition-colors text-sm md:text-base">GitHub</a>
+                 
+                  <a href="https://github.com/fadi559/Appjob" className="text-purple-400 hover:text-purple-300 transition-colors text-sm md:text-base">GitHub</a>
                 </div>
               </div>
             </motion.div>
@@ -154,15 +163,30 @@ export default function Home() {
               <div className="p-4 md:p-6">
                 <h3 className="text-lg md:text-xl font-bold mb-2 text-white">Next.js Project</h3>
                 <p className="text-gray-300 text-sm md:text-base mb-4">
-                  A modern web application developed with Next.js, demonstrating server-side rendering.
+                A sleek and modern e-commerce web application built using Next.js and TypeScript,
+                 designed to provide a smooth shopping experience for users. It features a dynamic
+                  product catalog powered by Sanity CMS, allowing easy management of product content,
+                   images, and descriptions. The app also integrates with Stripe for secure and seamless 
+                   payment processing, enabling users to complete purchases with confidence.
+
+
                 </p>
                 <div className="flex flex-wrap gap-2 mb-4">
                   <span className="px-2 md:px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-xs md:text-sm">Next.js</span>
                   <span className="px-2 md:px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-xs md:text-sm">React</span>
+                  <span className="px-2 md:px-3 py-1 bg-yellow-500/20 text-yellow-300 rounded-full text-xs md:text-sm">Stripe</span>
+<span className="px-2 md:px-3 py-1 bg-red-500/20 text-red-300 rounded-full text-xs md:text-sm">Sanity</span>
+<span className="px-2 md:px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-xs md:text-sm">TypeScript</span>
+<span className="px-2 md:px-3 py-1 bg-teal-500/20 text-teal-300 rounded-full text-xs md:text-sm">TailwindCSS</span>
+<span className="px-2 md:px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-xs md:text-sm">Prisma</span>
+<span className="px-2 md:px-3 py-1 bg-pink-500/20 text-pink-300 rounded-full text-xs md:text-sm">PostgreSQL</span>
+<span className="px-2 md:px-3 py-1 bg-gray-500/20 text-gray-300 rounded-full text-xs md:text-sm">Vercel</span>
+<span className="px-2 md:px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-xs md:text-sm">Umami</span>
+
                 </div>
                 <div className="flex gap-4">
-                  <a href="#" className="text-purple-400 hover:text-purple-300 transition-colors text-sm md:text-base">View Demo</a>
-                  <a href="#" className="text-purple-400 hover:text-purple-300 transition-colors text-sm md:text-base">GitHub</a>
+                  <a href="https://temoupro.vercel.app/" className="text-purple-400 hover:text-purple-300 transition-colors text-sm md:text-base">View Demo</a>
+                  <a href="https://github.com/fadi559/temoupro" className="text-purple-400 hover:text-purple-300 transition-colors text-sm md:text-base">GitHub</a>
                 </div>
               </div>
             </motion.div>
@@ -178,15 +202,21 @@ export default function Home() {
               <div className="p-4 md:p-6">
                 <h3 className="text-lg md:text-xl font-bold mb-2 text-white">Node.js Project</h3>
                 <p className="text-gray-300 text-sm md:text-base mb-4">
-                  A robust backend application built with Node.js, featuring efficient server-side operations.
+                  A complete backend API built to support a feature-rich notes application, developed 
+                with a focus on efficiency and functionality. This backend handles user authentication 
+                (signup and login), data management (create, search, update, and delete notes), as well
+                 as uploads for user skills and experience. Designed to integrate seamlessly with a React Native 
+                 frontend, it enables users to manage their notes and profiles with ease
                 </p>
                 <div className="flex flex-wrap gap-2 mb-4">
                   <span className="px-2 md:px-3 py-1 bg-yellow-500/20 text-yellow-300 rounded-full text-xs md:text-sm">Node.js</span>
                   <span className="px-2 md:px-3 py-1 bg-red-500/20 text-red-300 rounded-full text-xs md:text-sm">Backend</span>
+                  <span className="px-2 md:px-3 py-1 bg-red-500/20 text-red-300 rounded-full text-xs md:text-sm">JavaScript</span>
+
                 </div>
                 <div className="flex gap-4">
-                  <a href="#" className="text-purple-400 hover:text-purple-300 transition-colors text-sm md:text-base">View Demo</a>
-                  <a href="#" className="text-purple-400 hover:text-purple-300 transition-colors text-sm md:text-base">GitHub</a>
+                  {/* <a href="#" className="text-purple-400 hover:text-purple-300 transition-colors text-sm md:text-base">View Demo</a> */}
+                  <a href="https://github.com/fadi559/FadiNodejss" className="text-purple-400 hover:text-purple-300 transition-colors text-sm md:text-base">GitHub</a>
                 </div>
               </div>
             </motion.div>
@@ -210,7 +240,7 @@ export default function Home() {
             <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              href="mailto:your.email@example.com"
+             href="mailto:fadishqerat54@icloud.com"
               className="inline-block bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 md:px-8 py-2 md:py-3 rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all shadow-lg text-sm md:text-base"
             >
               Contact Me
