@@ -22,7 +22,7 @@ export default function Home() {
       
       {/* Hero Section */}
       <section id="home" className="h-screen relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-purple-900/10 via-transparent to-gray-900/30 z-0"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-purple-900/10 via-transparent z-0"></div>
         <div className="relative z-20 h-full flex items-center justify-center">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}

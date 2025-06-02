@@ -1,10 +1,55 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useGLTF, useAnimations } from '@react-three/drei';
+import * as THREE from 'three';
 
 export function SpaceTelescope(props: any) {
   const group = useRef<THREE.Group>(null);
   const { nodes, materials, animations } = useGLTF('/space_telescope.glb');
   useAnimations(animations, group);
+
+  useEffect(() => {
+    group.current?.traverse((child) => {
+      if (child.isMesh) {
+        // Create a new material with realistic properties
+        const material = new THREE.MeshPhysicalMaterial({
+          color: new THREE.Color('#C0C0C0'), // Silver color for the main body
+          metalness: 0.9,
+          roughness: 0.2,
+          clearcoat: 0.5,
+          clearcoatRoughness: 0.2,
+        });
+
+        // Apply different colors based on the mesh name
+        if (child.name.toLowerCase().includes('solar')) {
+          // Solar panels - dark blue/black
+          material.color.set('#1a1a2e');
+          material.metalness = 0.3;
+          material.roughness = 0.8;
+        } else if (child.name.toLowerCase().includes('antenna')) {
+          // Antennas - darker silver
+          material.color.set('#808080');
+          material.metalness = 0.8;
+          material.roughness = 0.3;
+        } else if (child.name.toLowerCase().includes('insulation') || 
+                  child.name.toLowerCase().includes('outer_shell')) {
+          // Thermal insulation - gold foil color
+          material.color.set('#FFD700');
+          material.metalness = 0.2;
+          material.roughness = 0.8;
+        } else if (child.name.toLowerCase().includes('lens') || 
+                  child.name.toLowerCase().includes('mirror')) {
+          // Optical components - dark with high reflectivity
+          material.color.set('#000000');
+          material.metalness = 1;
+          material.roughness = 0.1;
+          material.clearcoat = 1;
+        }
+
+        child.material = material;
+        child.material.needsUpdate = true;
+      }
+    });
+  }, []);
 
   return (
     <group ref={group} {...props} dispose={null}>
