@@ -4,7 +4,8 @@ import { useRef } from 'react'
 import Navbar from './components/Navbar'
 import AstronautSpaceBackground from './components/AstronautSpaceBackground'
 
-export default function Home() {
+
+const  Home =() =>{
   const containerRef = useRef(null)
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -82,7 +83,8 @@ export default function Home() {
             {[
               'React', 'Next.js', 'React Native', 'Node.js',
               'MongoDB', 'Firebase', 'Postman', 'Xcode',
-              'Java', 'JavaScript', 'TypeScript'
+              'Java', 'JavaScript', 'TypeScript',
+              'Sanity', 'Vercel', 'Prisma', 'TailwindCSS', 'PostgreSQL', 'Stripe'
             ].map((skill, index) => (
               <motion.div
                 key={skill}
@@ -175,13 +177,13 @@ Features:
                   <span className="px-2 md:px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-xs md:text-sm">Next.js</span>
                   <span className="px-2 md:px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-xs md:text-sm">React</span>
                   <span className="px-2 md:px-3 py-1 bg-yellow-500/20 text-yellow-300 rounded-full text-xs md:text-sm">Stripe</span>
-<span className="px-2 md:px-3 py-1 bg-red-500/20 text-red-300 rounded-full text-xs md:text-sm">Sanity</span>
-<span className="px-2 md:px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-xs md:text-sm">TypeScript</span>
-<span className="px-2 md:px-3 py-1 bg-teal-500/20 text-teal-300 rounded-full text-xs md:text-sm">TailwindCSS</span>
-<span className="px-2 md:px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-xs md:text-sm">Prisma</span>
-<span className="px-2 md:px-3 py-1 bg-pink-500/20 text-pink-300 rounded-full text-xs md:text-sm">PostgreSQL</span>
-<span className="px-2 md:px-3 py-1 bg-gray-500/20 text-gray-300 rounded-full text-xs md:text-sm">Vercel</span>
-<span className="px-2 md:px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-xs md:text-sm">Umami</span>
+                  <span className="px-2 md:px-3 py-1 bg-red-500/20 text-red-300 rounded-full text-xs md:text-sm">Sanity</span>
+                  <span className="px-2 md:px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-xs md:text-sm">TypeScript</span>
+                  <span className="px-2 md:px-3 py-1 bg-teal-500/20 text-teal-300 rounded-full text-xs md:text-sm">TailwindCSS</span>
+                  <span className="px-2 md:px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-xs md:text-sm">Prisma</span>
+                  <span className="px-2 md:px-3 py-1 bg-pink-500/20 text-pink-300 rounded-full text-xs md:text-sm">PostgreSQL</span>
+                  <span className="px-2 md:px-3 py-1 bg-gray-500/20 text-gray-300 rounded-full text-xs md:text-sm">Vercel</span>
+                  <span className="px-2 md:px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-xs md:text-sm">Umami</span>
 
                 </div>
                 <div className="flex gap-4">
@@ -224,6 +226,25 @@ Features:
         </motion.div>
       </section>
 
+      {/* Download CV Section */}
+      <section id="download-cv" className="py-12 md:py-20 relative z-10">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <div className="glass p-6 md:p-8 rounded-2xl shadow-2xl">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 md:mb-8 gradient-text">Download My CV</h2>
+            <p className="text-gray-300 text-base md:text-lg mb-6 md:mb-8">
+              Interested in working together or learning more about my experience? Download my CV below!
+            </p>
+            <a
+             href="/Cvlastone .pdf"
+              download
+              className="inline-block bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 md:px-8 py-2 md:py-3 rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all shadow-lg text-sm md:text-base btn-primary"
+            >
+              Download CV
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Contact Section */}
       <section id="contact" className="py-12 md:py-20 relative z-10">
         <motion.div 
@@ -251,3 +272,5 @@ Features:
     </main>
   )
 }
+
+export default Home;
