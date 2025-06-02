@@ -16,11 +16,13 @@ body {
     rgb(var(--background-end-rgb))
   );
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 4rem; /* Account for fixed navbar */
 }
 
 /* Custom animations */
@@ -68,7 +70,7 @@ html {
 ::-webkit-scrollbar-thumb {
   background: rgba(99, 102, 241, 0.5);
   border-radius: 4px;
-  }
+}
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(99, 102, 241, 0.7);
@@ -93,16 +95,16 @@ html {
 
 /* Button styles */
 .btn-primary {
-  @apply px-8 py-3 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600 transition-all shadow-lg transform hover:scale-105;
+  @apply px-6 md:px-8 py-2 md:py-3 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600 transition-all shadow-lg transform hover:scale-105 text-sm md:text-base;
 }
 
 .btn-secondary {
-  @apply px-8 py-3 rounded-lg border border-purple-500 text-purple-400 hover:bg-purple-500/10 transition-all;
+  @apply px-6 md:px-8 py-2 md:py-3 rounded-lg border border-purple-500 text-purple-400 hover:bg-purple-500/10 transition-all text-sm md:text-base;
 }
 
 /* Section styles */
 .section-padding {
-  @apply py-20 px-4;
+  @apply py-12 md:py-20 px-4;
 }
 
 .section-max-width {
@@ -122,5 +124,29 @@ html {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  .glass {
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+  }
+  
+  .card-hover:hover {
+    transform: none;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) {
+  .card-hover:hover {
+    transform: none;
+  }
+  
+  .btn-primary:hover,
+  .btn-secondary:hover {
+    transform: none;
   }
 }

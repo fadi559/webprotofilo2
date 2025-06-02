@@ -121,7 +121,7 @@ export default function AstronautSpaceBackground() {
         
         <Suspense fallback={null}>
           {/* <SpaceManModel scale={0.5} position={[-2, -1, 0]} /> */}
-          <SpaceTelescope scale={0.4} position={[2, 0, 0]} />
+          <SpaceTelescope scale={0.3} position={[2, 0, 0]} />
           <Environment preset="studio" />
           <Stars
             radius={100}
