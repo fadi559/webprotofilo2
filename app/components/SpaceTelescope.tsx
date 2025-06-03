@@ -9,36 +9,36 @@ export function SpaceTelescope(props: React.ComponentProps<'group'>) {
 
   useEffect(() => {
     group.current?.traverse((child) => {
-      if (child.isMesh) {
-        // Create a new material with realistic properties
+      if (child instanceof THREE.Mesh) {
+        
         const material = new THREE.MeshPhysicalMaterial({
-          color: new THREE.Color('#C0C0C0'), // Silver color for the main body
+          color: new THREE.Color('#C0C0C0'), 
           metalness: 0.9,
           roughness: 0.2,
           clearcoat: 0.5,
           clearcoatRoughness: 0.2,
         });
 
-        // Apply different colors based on the mesh name
+       
         if (child.name.toLowerCase().includes('solar')) {
-          // Solar panels - dark blue/black
+       
           material.color.set('#1a1a2e');
           material.metalness = 0.3;
           material.roughness = 0.8;
         } else if (child.name.toLowerCase().includes('antenna')) {
-          // Antennas - darker silver
+          
           material.color.set('#808080');
           material.metalness = 0.8;
           material.roughness = 0.3;
         } else if (child.name.toLowerCase().includes('insulation') || 
                   child.name.toLowerCase().includes('outer_shell')) {
-          // Thermal insulation - gold foil color
+         
           material.color.set('#FFD700');
           material.metalness = 0.2;
           material.roughness = 0.8;
         } else if (child.name.toLowerCase().includes('lens') || 
                   child.name.toLowerCase().includes('mirror')) {
-          // Optical components - dark with high reflectivity
+        
           material.color.set('#000000');
           material.metalness = 1;
           material.roughness = 0.1;
@@ -62,72 +62,72 @@ export function SpaceTelescope(props: React.ComponentProps<'group'>) {
                   <group name="skeletal83_83">
                     <group name="GLTF_created_0">
                       <primitive object={nodes.GLTF_created_0_rootJoint} />
-                      <skinnedMesh name="Object_48" geometry={nodes.Object_48.geometry} material={materials.material_0} skeleton={nodes.Object_48.skeleton} />
-                      <skinnedMesh name="Object_51" geometry={nodes.Object_51.geometry} material={materials.material_1} skeleton={nodes.Object_51.skeleton} />
-                      <skinnedMesh name="Object_54" geometry={nodes.Object_54.geometry} material={materials.material_2} skeleton={nodes.Object_54.skeleton} />
-                      <skinnedMesh name="Object_57" geometry={nodes.Object_57.geometry} material={materials.material_3} skeleton={nodes.Object_57.skeleton} />
-                      <skinnedMesh name="Object_60" geometry={nodes.Object_60.geometry} material={materials.material_4} skeleton={nodes.Object_60.skeleton} />
-                      <skinnedMesh name="Object_63" geometry={nodes.Object_63.geometry} material={materials.material_5} skeleton={nodes.Object_63.skeleton} />
-                      <skinnedMesh name="Object_66" geometry={nodes.Object_66.geometry} material={materials.material_6} skeleton={nodes.Object_66.skeleton} />
-                      <skinnedMesh name="Object_69" geometry={nodes.Object_69.geometry} material={materials.material_7} skeleton={nodes.Object_69.skeleton} />
-                      <skinnedMesh name="Object_72" geometry={nodes.Object_72.geometry} material={materials.material_8} skeleton={nodes.Object_72.skeleton} />
-                      <skinnedMesh name="Object_75" geometry={nodes.Object_75.geometry} material={materials.material_9} skeleton={nodes.Object_75.skeleton} />
-                      <skinnedMesh name="Object_78" geometry={nodes.Object_78.geometry} material={materials.material_10} skeleton={nodes.Object_78.skeleton} />
-                      <skinnedMesh name="Object_81" geometry={nodes.Object_81.geometry} material={materials.material_11} skeleton={nodes.Object_81.skeleton} />
-                      <skinnedMesh name="Object_84" geometry={nodes.Object_84.geometry} material={materials.material_12} skeleton={nodes.Object_84.skeleton} />
-                      <skinnedMesh name="Object_87" geometry={nodes.Object_87.geometry} material={materials.material_13} skeleton={nodes.Object_87.skeleton} />
-                      <skinnedMesh name="Object_90" geometry={nodes.Object_90.geometry} material={materials.material_14} skeleton={nodes.Object_90.skeleton} />
-                      <skinnedMesh name="Object_93" geometry={nodes.Object_93.geometry} material={materials.material_15} skeleton={nodes.Object_93.skeleton} />
-                      <skinnedMesh name="Object_96" geometry={nodes.Object_96.geometry} material={materials.material_16} skeleton={nodes.Object_96.skeleton} />
-                      <skinnedMesh name="Object_99" geometry={nodes.Object_99.geometry} material={materials.material_17} skeleton={nodes.Object_99.skeleton} />
-                      <skinnedMesh name="Object_102" geometry={nodes.Object_102.geometry} material={materials.material_18} skeleton={nodes.Object_102.skeleton} />
-                      <skinnedMesh name="Object_105" geometry={nodes.Object_105.geometry} material={materials.material_19} skeleton={nodes.Object_105.skeleton} />
-                      <skinnedMesh name="Object_108" geometry={nodes.Object_108.geometry} material={materials.material_20} skeleton={nodes.Object_108.skeleton} />
-                      <skinnedMesh name="Object_111" geometry={nodes.Object_111.geometry} material={materials.material_21} skeleton={nodes.Object_111.skeleton} />
-                      <skinnedMesh name="Object_114" geometry={nodes.Object_114.geometry} material={materials.material_22} skeleton={nodes.Object_114.skeleton} />
-                      <skinnedMesh name="Object_117" geometry={nodes.Object_117.geometry} material={materials.material_23} skeleton={nodes.Object_117.skeleton} />
-                      <skinnedMesh name="Object_120" geometry={nodes.Object_120.geometry} material={materials.material_24} skeleton={nodes.Object_120.skeleton} />
-                      <skinnedMesh name="Object_123" geometry={nodes.Object_123.geometry} material={materials.material_25} skeleton={nodes.Object_123.skeleton} />
-                      <skinnedMesh name="Object_126" geometry={nodes.Object_126.geometry} material={materials.material_26} skeleton={nodes.Object_126.skeleton} />
-                      <skinnedMesh name="Object_129" geometry={nodes.Object_129.geometry} material={materials.material_27} skeleton={nodes.Object_129.skeleton} />
-                      <skinnedMesh name="Object_132" geometry={nodes.Object_132.geometry} material={materials.material_28} skeleton={nodes.Object_132.skeleton} />
-                      <skinnedMesh name="Object_135" geometry={nodes.Object_135.geometry} material={materials.material_29} skeleton={nodes.Object_135.skeleton} />
-                      <skinnedMesh name="Object_138" geometry={nodes.Object_138.geometry} material={materials.material_30} skeleton={nodes.Object_138.skeleton} />
-                      <skinnedMesh name="Object_141" geometry={nodes.Object_141.geometry} material={materials.material_31} skeleton={nodes.Object_141.skeleton} />
-                      <skinnedMesh name="Object_144" geometry={nodes.Object_144.geometry} material={materials.material_32} skeleton={nodes.Object_144.skeleton} />
-                      <skinnedMesh name="Object_147" geometry={nodes.Object_147.geometry} material={materials.material_33} skeleton={nodes.Object_147.skeleton} />
-                      <skinnedMesh name="Object_150" geometry={nodes.Object_150.geometry} material={materials.material_34} skeleton={nodes.Object_150.skeleton} />
-                      <skinnedMesh name="Object_153" geometry={nodes.Object_153.geometry} material={materials.material_35} skeleton={nodes.Object_153.skeleton} />
-                      <skinnedMesh name="Object_156" geometry={nodes.Object_156.geometry} material={materials.material_36} skeleton={nodes.Object_156.skeleton} />
-                      <skinnedMesh name="Object_159" geometry={nodes.Object_159.geometry} material={materials.material_37} skeleton={nodes.Object_159.skeleton} />
-                      <skinnedMesh name="Object_162" geometry={nodes.Object_162.geometry} material={materials.material_38} skeleton={nodes.Object_162.skeleton} />
-                      <skinnedMesh name="Object_165" geometry={nodes.Object_165.geometry} material={materials.material_39} skeleton={nodes.Object_165.skeleton} />
-                      <skinnedMesh name="Object_168" geometry={nodes.Object_168.geometry} material={materials.material_40} skeleton={nodes.Object_168.skeleton} />
-                      <skinnedMesh name="Object_171" geometry={nodes.Object_171.geometry} material={materials.material_41} skeleton={nodes.Object_171.skeleton} />
-                      <skinnedMesh name="Object_174" geometry={nodes.Object_174.geometry} material={materials.material_42} skeleton={nodes.Object_174.skeleton} />
-                      <skinnedMesh name="Object_177" geometry={nodes.Object_177.geometry} material={materials.material_43} skeleton={nodes.Object_177.skeleton} />
-                      <skinnedMesh name="Object_180" geometry={nodes.Object_180.geometry} material={materials.material_44} skeleton={nodes.Object_180.skeleton} />
-                      <skinnedMesh name="Object_183" geometry={nodes.Object_183.geometry} material={materials.material_45} skeleton={nodes.Object_183.skeleton} />
-                      <skinnedMesh name="Object_186" geometry={nodes.Object_186.geometry} material={materials.material_46} skeleton={nodes.Object_186.skeleton} />
-                      <skinnedMesh name="Object_189" geometry={nodes.Object_189.geometry} material={materials.material_47} skeleton={nodes.Object_189.skeleton} />
-                      <skinnedMesh name="Object_192" geometry={nodes.Object_192.geometry} material={materials.material_48} skeleton={nodes.Object_192.skeleton} />
-                      <skinnedMesh name="Object_195" geometry={nodes.Object_195.geometry} material={materials.material_49} skeleton={nodes.Object_195.skeleton} />
-                      <skinnedMesh name="Object_198" geometry={nodes.Object_198.geometry} material={materials.material_50} skeleton={nodes.Object_198.skeleton} />
-                      <skinnedMesh name="Object_201" geometry={nodes.Object_201.geometry} material={materials.material_51} skeleton={nodes.Object_201.skeleton} />
-                      <skinnedMesh name="Object_204" geometry={nodes.Object_204.geometry} material={materials.material_52} skeleton={nodes.Object_204.skeleton} />
-                      <skinnedMesh name="Object_207" geometry={nodes.Object_207.geometry} material={materials.material_53} skeleton={nodes.Object_207.skeleton} />
-                      <skinnedMesh name="Object_210" geometry={nodes.Object_210.geometry} material={materials.material_54} skeleton={nodes.Object_210.skeleton} />
-                      <skinnedMesh name="Object_213" geometry={nodes.Object_213.geometry} material={materials.material_55} skeleton={nodes.Object_213.skeleton} />
-                      <skinnedMesh name="Object_216" geometry={nodes.Object_216.geometry} material={materials.material_56} skeleton={nodes.Object_216.skeleton} />
-                      <skinnedMesh name="Object_219" geometry={nodes.Object_219.geometry} material={materials.material_57} skeleton={nodes.Object_219.skeleton} />
-                      <skinnedMesh name="Object_222" geometry={nodes.Object_222.geometry} material={materials.material_58} skeleton={nodes.Object_222.skeleton} />
-                      <skinnedMesh name="Object_225" geometry={nodes.Object_225.geometry} material={materials.material_59} skeleton={nodes.Object_225.skeleton} />
-                      <skinnedMesh name="Object_228" geometry={nodes.Object_228.geometry} material={materials.material_60} skeleton={nodes.Object_228.skeleton} />
-                      <skinnedMesh name="Object_231" geometry={nodes.Object_231.geometry} material={materials.material_61} skeleton={nodes.Object_231.skeleton} />
-                      <skinnedMesh name="Object_234" geometry={nodes.Object_234.geometry} material={materials.material_62} skeleton={nodes.Object_234.skeleton} />
-                      <skinnedMesh name="Object_237" geometry={nodes.Object_237.geometry} material={materials.material_63} skeleton={nodes.Object_237.skeleton} />
-                      <skinnedMesh name="Object_240" geometry={nodes.Object_240.geometry} material={materials.material_64} skeleton={nodes.Object_240.skeleton} />
-                      <skinnedMesh name="Object_243" geometry={nodes.Object_243.geometry} material={materials.material_65} skeleton={nodes.Object_243.skeleton} />
+                      <skinnedMesh name="Object_48" geometry={(nodes.Object_48 as THREE.SkinnedMesh).geometry} material={materials.material_0} skeleton={(nodes.Object_48 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_51" geometry={(nodes.Object_51 as THREE.SkinnedMesh).geometry} material={materials.material_1} skeleton={(nodes.Object_51 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_54" geometry={(nodes.Object_54 as THREE.SkinnedMesh).geometry} material={materials.material_2} skeleton={(nodes.Object_54 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_57" geometry={(nodes.Object_57 as THREE.SkinnedMesh).geometry} material={materials.material_3} skeleton={(nodes.Object_57 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_60" geometry={(nodes.Object_60 as THREE.SkinnedMesh).geometry} material={materials.material_4} skeleton={(nodes.Object_60 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_63" geometry={(nodes.Object_63 as THREE.SkinnedMesh).geometry} material={materials.material_5} skeleton={(nodes.Object_63 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_66" geometry={(nodes.Object_66 as THREE.SkinnedMesh).geometry} material={materials.material_6} skeleton={(nodes.Object_66 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_69" geometry={(nodes.Object_69 as THREE.SkinnedMesh).geometry} material={materials.material_7} skeleton={(nodes.Object_69 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_72" geometry={(nodes.Object_72 as THREE.SkinnedMesh).geometry} material={materials.material_8} skeleton={(nodes.Object_72 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_75" geometry={(nodes.Object_75 as THREE.SkinnedMesh).geometry} material={materials.material_9} skeleton={(nodes.Object_75 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_78" geometry={(nodes.Object_78 as THREE.SkinnedMesh).geometry} material={materials.material_10} skeleton={(nodes.Object_78 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_81" geometry={(nodes.Object_81 as THREE.SkinnedMesh).geometry} material={materials.material_11} skeleton={(nodes.Object_81 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_84" geometry={(nodes.Object_84 as THREE.SkinnedMesh).geometry} material={materials.material_12} skeleton={(nodes.Object_84 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_87" geometry={(nodes.Object_87 as THREE.SkinnedMesh).geometry} material={materials.material_13} skeleton={(nodes.Object_87 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_90" geometry={(nodes.Object_90 as THREE.SkinnedMesh).geometry} material={materials.material_14} skeleton={(nodes.Object_90 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_93" geometry={(nodes.Object_93 as THREE.SkinnedMesh).geometry} material={materials.material_15} skeleton={(nodes.Object_93 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_96" geometry={(nodes.Object_96 as THREE.SkinnedMesh).geometry} material={materials.material_16} skeleton={(nodes.Object_96 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_99" geometry={(nodes.Object_99 as THREE.SkinnedMesh).geometry} material={materials.material_17} skeleton={(nodes.Object_99 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_102" geometry={(nodes.Object_102 as THREE.SkinnedMesh).geometry} material={materials.material_18} skeleton={(nodes.Object_102 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_105" geometry={(nodes.Object_105 as THREE.SkinnedMesh).geometry} material={materials.material_19} skeleton={(nodes.Object_105 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_108" geometry={(nodes.Object_108 as THREE.SkinnedMesh).geometry} material={materials.material_20} skeleton={(nodes.Object_108 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_111" geometry={(nodes.Object_111 as THREE.SkinnedMesh).geometry} material={materials.material_21} skeleton={(nodes.Object_111 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_114" geometry={(nodes.Object_114 as THREE.SkinnedMesh).geometry} material={materials.material_22} skeleton={(nodes.Object_114 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_117" geometry={(nodes.Object_117 as THREE.SkinnedMesh).geometry} material={materials.material_23} skeleton={(nodes.Object_117 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_120" geometry={(nodes.Object_120 as THREE.SkinnedMesh).geometry} material={materials.material_24} skeleton={(nodes.Object_120 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_123" geometry={(nodes.Object_123 as THREE.SkinnedMesh).geometry} material={materials.material_25} skeleton={(nodes.Object_123 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_126" geometry={(nodes.Object_126 as THREE.SkinnedMesh).geometry} material={materials.material_26} skeleton={(nodes.Object_126 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_129" geometry={(nodes.Object_129 as THREE.SkinnedMesh).geometry} material={materials.material_27} skeleton={(nodes.Object_129 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_132" geometry={(nodes.Object_132 as THREE.SkinnedMesh).geometry} material={materials.material_28} skeleton={(nodes.Object_132 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_135" geometry={(nodes.Object_135 as THREE.SkinnedMesh).geometry} material={materials.material_29} skeleton={(nodes.Object_135 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_138" geometry={(nodes.Object_138 as THREE.SkinnedMesh).geometry} material={materials.material_30} skeleton={(nodes.Object_138 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_141" geometry={(nodes.Object_141 as THREE.SkinnedMesh).geometry} material={materials.material_31} skeleton={(nodes.Object_141 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_144" geometry={(nodes.Object_144 as THREE.SkinnedMesh).geometry} material={materials.material_32} skeleton={(nodes.Object_144 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_147" geometry={(nodes.Object_147 as THREE.SkinnedMesh).geometry} material={materials.material_33} skeleton={(nodes.Object_147 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_150" geometry={(nodes.Object_150 as THREE.SkinnedMesh).geometry} material={materials.material_34} skeleton={(nodes.Object_150 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_153" geometry={(nodes.Object_153 as THREE.SkinnedMesh).geometry} material={materials.material_35} skeleton={(nodes.Object_153 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_156" geometry={(nodes.Object_156 as THREE.SkinnedMesh).geometry} material={materials.material_36} skeleton={(nodes.Object_156 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_159" geometry={(nodes.Object_159 as THREE.SkinnedMesh).geometry} material={materials.material_37} skeleton={(nodes.Object_159 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_162" geometry={(nodes.Object_162 as THREE.SkinnedMesh).geometry} material={materials.material_38} skeleton={(nodes.Object_162 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_165" geometry={(nodes.Object_165 as THREE.SkinnedMesh).geometry} material={materials.material_39} skeleton={(nodes.Object_165 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_168" geometry={(nodes.Object_168 as THREE.SkinnedMesh).geometry} material={materials.material_40} skeleton={(nodes.Object_168 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_171" geometry={(nodes.Object_171 as THREE.SkinnedMesh).geometry} material={materials.material_41} skeleton={(nodes.Object_171 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_174" geometry={(nodes.Object_174 as THREE.SkinnedMesh).geometry} material={materials.material_42} skeleton={(nodes.Object_174 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_177" geometry={(nodes.Object_177 as THREE.SkinnedMesh).geometry} material={materials.material_43} skeleton={(nodes.Object_177 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_180" geometry={(nodes.Object_180 as THREE.SkinnedMesh).geometry} material={materials.material_44} skeleton={(nodes.Object_180 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_183" geometry={(nodes.Object_183 as THREE.SkinnedMesh).geometry} material={materials.material_45} skeleton={(nodes.Object_183 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_186" geometry={(nodes.Object_186 as THREE.SkinnedMesh).geometry} material={materials.material_46} skeleton={(nodes.Object_186 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_189" geometry={(nodes.Object_189 as THREE.SkinnedMesh).geometry} material={materials.material_47} skeleton={(nodes.Object_189 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_192" geometry={(nodes.Object_192 as THREE.SkinnedMesh).geometry} material={materials.material_48} skeleton={(nodes.Object_192 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_195" geometry={(nodes.Object_195 as THREE.SkinnedMesh).geometry} material={materials.material_49} skeleton={(nodes.Object_195 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_198" geometry={(nodes.Object_198 as THREE.SkinnedMesh).geometry} material={materials.material_50} skeleton={(nodes.Object_198 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_201" geometry={(nodes.Object_201 as THREE.SkinnedMesh).geometry} material={materials.material_51} skeleton={(nodes.Object_201 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_204" geometry={(nodes.Object_204 as THREE.SkinnedMesh).geometry} material={materials.material_52} skeleton={(nodes.Object_204 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_207" geometry={(nodes.Object_207 as THREE.SkinnedMesh).geometry} material={materials.material_53} skeleton={(nodes.Object_207 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_210" geometry={(nodes.Object_210 as THREE.SkinnedMesh).geometry} material={materials.material_54} skeleton={(nodes.Object_210 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_213" geometry={(nodes.Object_213 as THREE.SkinnedMesh).geometry} material={materials.material_55} skeleton={(nodes.Object_213 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_216" geometry={(nodes.Object_216 as THREE.SkinnedMesh).geometry} material={materials.material_56} skeleton={(nodes.Object_216 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_219" geometry={(nodes.Object_219 as THREE.SkinnedMesh).geometry} material={materials.material_57} skeleton={(nodes.Object_219 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_222" geometry={(nodes.Object_222 as THREE.SkinnedMesh).geometry} material={materials.material_58} skeleton={(nodes.Object_222 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_225" geometry={(nodes.Object_225 as THREE.SkinnedMesh).geometry} material={materials.material_59} skeleton={(nodes.Object_225 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_228" geometry={(nodes.Object_228 as THREE.SkinnedMesh).geometry} material={materials.material_60} skeleton={(nodes.Object_228 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_231" geometry={(nodes.Object_231 as THREE.SkinnedMesh).geometry} material={materials.material_61} skeleton={(nodes.Object_231 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_234" geometry={(nodes.Object_234 as THREE.SkinnedMesh).geometry} material={materials.material_62} skeleton={(nodes.Object_234 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_237" geometry={(nodes.Object_237 as THREE.SkinnedMesh).geometry} material={materials.material_63} skeleton={(nodes.Object_237 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_240" geometry={(nodes.Object_240 as THREE.SkinnedMesh).geometry} material={materials.material_64} skeleton={(nodes.Object_240 as THREE.SkinnedMesh).skeleton} />
+                      <skinnedMesh name="Object_243" geometry={(nodes.Object_243 as THREE.SkinnedMesh).geometry} material={materials.material_65} skeleton={(nodes.Object_243 as THREE.SkinnedMesh).skeleton} />
                       <group name="Frame3_3_correction">
                         <group name="Frame3_3" />
                       </group>
