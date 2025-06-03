@@ -1,6 +1,6 @@
 'use client'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 
 const navItems = [
   { name: 'Home', href: '#home' },
@@ -15,7 +15,6 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState('home')
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [pendingScrollTo, setPendingScrollTo] = useState<string | null>(null)
-  const justClosedMenu = useRef(false)
 
   useEffect(() => {
     const handleScroll = () => {

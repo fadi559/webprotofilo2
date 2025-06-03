@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { useGLTF, useAnimations } from '@react-three/drei';
 import * as THREE from 'three';
 
-export function SpaceTelescope(props: any) {
+export function SpaceTelescope(props: React.ComponentProps<'group'>) {
   const group = useRef<THREE.Group>(null);
   const { nodes, materials, animations } = useGLTF('/space_telescope.glb');
   useAnimations(animations, group);
