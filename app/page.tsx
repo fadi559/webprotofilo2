@@ -235,7 +235,7 @@ Features:
               Interested in working together or learning more about my experience? Download my CV below!
             </p>
             <a
-             href="/Cvlastone .pdf"
+             href="/new CV .docx.pdf"
               download
               className="inline-block bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 md:px-8 py-2 md:py-3 rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all shadow-lg text-sm md:text-base btn-primary"
             >
