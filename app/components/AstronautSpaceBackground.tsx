@@ -26,8 +26,7 @@ export default function AstronautSpaceBackground() {
         />
         
         <Suspense fallback={null}>
-          {/* <SpaceManModel scale={0.5} position={[-2, -1, 0]} /> */}
-          {/* <SpaceTelescope scale={0.3} position={[2, 0, 0]} /> */}
+          {/* Add any other 3D objects you want to keep here */}
           <Environment preset="studio" />
           <Stars
             radius={100}
