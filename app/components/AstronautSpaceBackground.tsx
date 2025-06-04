@@ -3,7 +3,7 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Environment, Stars } from '@react-three/drei';
 import { Suspense } from 'react';
 import React from 'react';
-import { SpaceTelescope } from './SpaceTelescope';
+
 
 export default function AstronautSpaceBackground() {
   return (
