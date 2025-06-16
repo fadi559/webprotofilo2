@@ -331,27 +331,102 @@ h1, h2, h3, h4, h5, h6, p, span, a, li, button {
 
 /* Skill Cards */
 .skill-card {
-  @apply bg-white/10 backdrop-blur-lg rounded-xl p-4 md:p-6 border border-white/20 relative overflow-hidden;
+  @apply bg-white/5 backdrop-blur-lg rounded-xl p-4 md:p-6 border border-white/10 relative overflow-hidden;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   transition: all 0.3s ease;
 }
 
-.skill-card:hover {
-  @apply bg-white/20 border-white/30;
-  transform: translateY(-5px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+.skill-card-inner {
+  @apply relative w-full h-full;
+  perspective: 1000px;
 }
 
-.skill-glow {
+.skill-background {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    transparent 100%
+  );
+  border-radius: 0.75rem;
+  transform-origin: center;
+  filter: blur(8px);
 }
 
-.skill-card:hover .skill-glow {
-  opacity: 1;
+.skill-particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 0.75rem;
+}
+
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(1px);
+}
+
+.particle:nth-child(1) { left: 20%; top: 50%; }
+.particle:nth-child(2) { left: 40%; top: 30%; }
+.particle:nth-child(3) { left: 60%; top: 70%; }
+.particle:nth-child(4) { left: 80%; top: 40%; }
+.particle:nth-child(5) { left: 50%; top: 20%; }
+.particle:nth-child(6) { left: 30%; top: 60%; }
+.particle:nth-child(7) { left: 70%; top: 50%; }
+.particle:nth-child(8) { left: 45%; top: 80%; }
+
+.skill-rings {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ring {
+  position: absolute;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  transform-origin: center;
+}
+
+.skill-card:hover {
+  @apply border-white/30;
+  box-shadow: 
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05),
+    0 0 30px rgba(255, 255, 255, 0.15);
+}
+
+.skill-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s;
+}
+
+.skill-card:hover::before {
+  transform: translateX(100%);
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
 }
 
 /* Section background gradients */

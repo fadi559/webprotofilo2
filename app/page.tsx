@@ -190,8 +190,7 @@ const Home = () => {
                   }
                 }}
                 whileHover={{ 
-                  scale: 1.05,
-                  rotate: 2,
+                  scale: 1.1,
                   transition: { 
                     duration: 0.3,
                     type: "spring",
@@ -200,19 +199,74 @@ const Home = () => {
                 }}
                 className="skill-card group"
               >
-                <motion.p 
-                  className="text-lg md:text-xl font-semibold text-white"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ type: "spring", stiffness: 400 }}
-                >
-                  {skill}
-                </motion.p>
-                <motion.div 
-                  className="skill-glow"
-                  initial={{ opacity: 0 }}
-                  whileHover={{ opacity: 1 }}
-                  transition={{ duration: 0.3 }}
-                />
+                <div className="skill-card-inner">
+                  <motion.p 
+                    className="text-lg md:text-xl font-semibold text-white relative z-10"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ type: "spring", stiffness: 400 }}
+                  >
+                    {skill}
+                  </motion.p>
+                  <motion.div 
+                    className="skill-background"
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    whileHover={{ 
+                      scale: 1.2,
+                      opacity: 1,
+                      transition: { duration: 0.3 }
+                    }}
+                  />
+                  <motion.div 
+                    className="skill-particles"
+                    initial={{ opacity: 0 }}
+                    whileHover={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {[...Array(8)].map((_, i) => (
+                      <motion.div
+                        key={i}
+                        className="particle"
+                        animate={{
+                          y: [0, -30, 0],
+                          x: [0, Math.random() * 40 - 20, 0],
+                          opacity: [0, 1, 0],
+                          scale: [0, 1, 0],
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          delay: i * 0.15,
+                          ease: "easeInOut"
+                        }}
+                      />
+                    ))}
+                  </motion.div>
+                  <motion.div 
+                    className="skill-rings"
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    whileHover={{ 
+                      scale: 1.2,
+                      opacity: 1,
+                      transition: { duration: 0.5 }
+                    }}
+                  >
+                    {[...Array(3)].map((_, i) => (
+                      <motion.div
+                        key={i}
+                        className="ring"
+                        animate={{
+                          scale: [1, 1.2, 1],
+                          opacity: [0.5, 0.2, 0.5],
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          delay: i * 0.3,
+                        }}
+                      />
+                    ))}
+                  </motion.div>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -249,7 +303,7 @@ const Home = () => {
             <TiltedCard
               title="Node.js Backend API"
               description="A robust RESTful API built with Node.js and Express for a social media platform."
-              image="/screenShotTemo.png"
+             image="/AppIcon~ios-marketing.png"
               tags={['Node.js', 'Express', 'MongoDB']}
               githubLink="https://github.com/fadi559/FadiNodejss"
              
