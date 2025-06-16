@@ -37,6 +37,7 @@ import {
 import { FaReact, FaLayerGroup, FaChartLine } from "react-icons/fa";
 import { BiLogoPostgresql } from "react-icons/bi";
 import ProjectsSection from './components/ProjectsSection'
+import { TypeAnimation } from 'react-type-animation';
 
 const FloatingActionButton = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -111,48 +112,89 @@ const Home = () => {
         <Navbar />
         
         {/* Hero Section */}
-        <section className="min-h-screen flex items-center justify-center p-8">
-          <div className="text-center">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-6xl font-bold mb-4"
+        <section className="min-h-screen flex items-center justify-center p-8 relative overflow-hidden">
+          <div className="text-center z-10">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
             >
-              Hi, I&apos;m Fadi
-            </motion.h1>
-            <motion.p
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="text-6xl font-bold mb-4 text-white"
+              >
+                FadiShqerat
+              </motion.h1>
+            </motion.div>
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-xl mb-8"
             >
-              Full Stack Developer
-            </motion.p>
+              <TypeAnimation
+                sequence={[
+                  'Full Stack Developer',
+                  1000,
+                  'React Developer',
+                  1000,
+                  'Next.js Developer',
+                  1000,
+                  'Node.js Developer',
+                  1000,
+                ]}
+                wrapper="span"
+                speed={50}
+                repeat={Infinity}
+                className="text-white"
+              />
+            </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               className="flex justify-center gap-4"
             >
-              <a
+              <motion.a
                 href="https://github.com/yourusername"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
               >
                 <FaGithub className="text-2xl" />
-              </a>
-              <a
+              </motion.a>
+              <motion.a
                 href="https://linkedin.com/in/yourusername"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
               >
                 <FaLinkedin className="text-2xl" />
-              </a>
+              </motion.a>
             </motion.div>
           </div>
+          <motion.div
+            className="absolute inset-0 -z-10"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+          >
+            <Aurora
+              colorStops={[
+                { color: "#4f46e5", position: 0 },
+                { color: "#7c3aed", position: 0.5 },
+                { color: "#db2777", position: 1 }
+              ]}
+              blend={0.5}
+              amplitude={0.5}
+            />
+          </motion.div>
         </section>
 
         {/* About Section */}
