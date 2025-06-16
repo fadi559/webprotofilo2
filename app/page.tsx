@@ -64,10 +64,6 @@ const Home = () => {
     offset: ["start start", "end end"]
   })
 
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8])
-  const y = useTransform(scrollYProgress, [0, 0.5], [0, -100])
-
   return (
     <main ref={containerRef} className="min-h-screen relative">
       <ScrollProgress />
