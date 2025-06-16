@@ -280,10 +280,10 @@ const Home = () => {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 1 }}
-            className="max-w-6xl mx-auto px-4 text-center"
+            className="max-w-6xl mx-auto px-4 text-center relative z-20 bg-black/30 backdrop-blur-sm rounded-lg p-8"
           >
             <h2 className="section-title">Download My CV</h2>
-            <p className="text-gray-300 text-base md:text-lg mb-8">
+            <p className="text-white text-base md:text-lg mb-8">
               Want to know more about my experience and skills? Download my CV to learn more.
             </p>
             <a
@@ -303,10 +303,10 @@ const Home = () => {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 1 }}
-            className="max-w-6xl mx-auto px-4 text-center"
+            className="max-w-6xl mx-auto px-4 text-center relative z-20 bg-black/30 backdrop-blur-sm rounded-lg p-8"
           >
             <h2 className="section-title">Get In Touch</h2>
-            <p className="text-gray-300 text-base md:text-lg mb-8">
+            <p className="text-white text-base md:text-lg mb-8">
               Have a project in mind? Let&apos;s discuss how we can work together.
             </p>
             <div className="contact-buttons">
@@ -317,7 +317,7 @@ const Home = () => {
                 Email Me
               </a>
               <a
-                href="https://www.linkedin.com/in/fadi-shqerat-60877a254 "
+                href="https://www.linkedin.com/in/fadi-shqerat-60877a254"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-secondary"
