@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef, useState, useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Aurora from './components/Aurora'
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { 
   SiTypescript, 
   SiJavascript, 
@@ -16,23 +16,14 @@ import {
   SiRedux,
   SiFirebase,
   SiGit,
-  SiDocker,
-  SiPostgresql,
-  SiPrisma,
-  SiJest,
-  SiCypress,
   SiVercel,
-  SiNetlify,
-  SiHeroku,
-  SiAwsamplify,
-
-  SiSanity,
   SiPostman,
   SiStripe,
   SiXcode,
   SiAndroidstudio,
   SiHtml5,
   SiCss3,
+  SiSanity
 } from "react-icons/si";
 import { FaReact, FaLayerGroup, FaChartLine } from "react-icons/fa";
 import { BiLogoPostgresql } from "react-icons/bi";
