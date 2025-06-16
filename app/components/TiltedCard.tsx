@@ -1,116 +1,61 @@
 'use client'
 
-import { useRef } from 'react'
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
-import Image from 'next/image'
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 
 interface TiltedCardProps {
-  title: string
-  description: string
-  image: string
-  tags: string[]
-  githubLink: string
-  demoLink?: string
+  title: string;
+  description: string;
+  image: string;
+  githubUrl: string;
+  demoUrl: string;
 }
 
-const TiltedCard = ({
-  title,
-  description,
-  image,
-  tags,
-  githubLink,
-  demoLink
-}: TiltedCardProps) => {
-  const cardRef = useRef<HTMLDivElement>(null)
-  const x = useMotionValue(0)
-  const y = useMotionValue(0)
-
-  const rotateX = useSpring(useTransform(y, [-100, 100], [12, -12]), {
-    stiffness: 300,
-    damping: 30
-  })
-  const rotateY = useSpring(useTransform(x, [-100, 100], [-12, 12]), {
-    stiffness: 300,
-    damping: 30
-  })
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return
-
-    const rect = cardRef.current.getBoundingClientRect()
-    const centerX = rect.left + rect.width / 2
-    const centerY = rect.top + rect.height / 2
-    const mouseX = e.clientX - centerX
-    const mouseY = e.clientY - centerY
-
-    x.set(mouseX)
-    y.set(mouseY)
-  }
-
-  const handleMouseLeave = () => {
-    x.set(0)
-    y.set(0)
-  }
-
+const TiltedCard = ({ title, description, image, githubUrl, demoUrl }: TiltedCardProps) => {
   return (
     <motion.div
-      ref={cardRef}
-      className="project-card relative h-64 overflow-hidden rounded-lg"
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-      whileHover={{ scale: 1.05 }}
-      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="relative w-full h-[300px] md:h-[400px] rounded-xl overflow-hidden group"
     >
       <div className="relative w-full h-full">
         <Image
           src={image}
           alt={title}
           fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className="object-cover"
-          priority
+          className="object-cover transition-transform duration-500 group-hover:scale-110"
         />
-        <motion.div 
-          className="absolute inset-0 bg-black/70 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4"
-          initial={{ opacity: 0 }}
-          whileHover={{ opacity: 1 }}
-        >
-          <div className="text-center text-white">
-            <h3 className="text-xl font-bold mb-2">{title}</h3>
-            <p className="text-sm mb-4">{description}</p>
-            <div className="flex gap-2 flex-wrap justify-center mb-4">
-              {tags.map((tag, index) => (
-                <span key={index} className="bg-purple-500/20 px-2 py-1 rounded text-xs">
-                  {tag}
-                </span>
-              ))}
-            </div>
-            <div className="flex gap-4 justify-center">
+        <div className="absolute inset-0 bg-black/60 md:bg-black/0 md:group-hover:bg-black/60 transition-all duration-300">
+          <div className="absolute inset-0 flex flex-col justify-center items-center p-6 text-white">
+            <h3 className="text-xl md:text-2xl font-bold mb-2 text-center">{title}</h3>
+            <p className="text-sm md:text-base text-center mb-4 opacity-0 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
+              {description}
+            </p>
+            <div className="flex gap-4 mt-4">
               <a
-                href={githubLink}
+                href={githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-purple-400 hover:underline"
+                className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors"
               >
-                GitHub
+                <FaGithub className="text-xl" />
               </a>
-              {demoLink && (
-                <a
-                  href={demoLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-purple-400 hover:underline"
-                >
-                  View Demo
-                </a>
-              )}
+              <a
+                href={demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors"
+              >
+                <FaExternalLinkAlt className="text-xl" />
+              </a>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </motion.div>
-  )
-}
+  );
+};
 
-export default TiltedCard 
+export default TiltedCard; 
