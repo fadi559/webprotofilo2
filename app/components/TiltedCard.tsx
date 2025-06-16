@@ -10,9 +10,10 @@ interface TiltedCardProps {
   image: string;
   githubUrl: string;
   demoUrl: string;
+  tags: string[];
 }
 
-const TiltedCard = ({ title, description, image, githubUrl, demoUrl }: TiltedCardProps) => {
+const TiltedCard = ({ title, description, image, githubUrl, demoUrl, tags }: TiltedCardProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -33,6 +34,13 @@ const TiltedCard = ({ title, description, image, githubUrl, demoUrl }: TiltedCar
             <p className="text-sm md:text-base text-center mb-4 opacity-0 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
               {description}
             </p>
+            <div className="flex flex-wrap gap-2 justify-center mb-4">
+              {tags.map((tag, index) => (
+                <span key={index} className="bg-white/20 px-2 py-1 rounded text-xs">
+                  {tag}
+                </span>
+              ))}
+            </div>
             <div className="flex gap-4 mt-4">
               <a
                 href={githubUrl}

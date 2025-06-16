@@ -30,9 +30,9 @@ const ProjectsSection = () => {
               image="/AppIcon~ios-marketing.png"
               title="React Native Job Search App"
               description="A job search mobile app with Face ID login and advanced filters"
-              tags={["React Native", "Node.js", "MongoDB",  ]}
-              githubLink="https://github.com/fadi559/Appjob"
-              
+              tags={["React Native", "Node.js", "MongoDB"]}
+              githubUrl="https://github.com/fadi559/Appjob"
+              demoUrl="https://github.com/fadi559/Appjob"
             />
           </motion.div>
 
@@ -52,10 +52,10 @@ const ProjectsSection = () => {
             <TiltedCard
               image="/screenShotTemo.png"
               title="Next.js E-commerce Platform"
-              description="A modern e-commerce platform with Stripe integration"
-              tags={["Next.js", "TypeScript", "Prisma", "Tailwind CSS", "Stripe","sanity","PostgreSQL",]} 
-              githubLink="https://github.com/fadi559/temoupro"
-              demoLink="https://temoupro.vercel.app/"
+              description="A full-stack e-commerce platform with real-time inventory management"
+              tags={["Next.js", "TypeScript", "Prisma", "PostgreSQL"]}
+              githubUrl="https://github.com/fadi559/Appjob"
+              demoUrl="https://github.com/fadi559/Appjob"
             />
           </motion.div>
 
@@ -75,10 +75,10 @@ const ProjectsSection = () => {
             <TiltedCard
               image="/AppIcon~ios-marketing.png"
               title="Node.js Backend API"
-              description="A robust backend API with real-time features"
-              tags={["Node.js", "Express", "MongoDB ","Cloudinary"]}
-              githubLink="https://github.com/fadi559/FadiNodejss"
-             
+              description="A scalable REST API with authentication and real-time features"
+              tags={["Node.js", "Express", "MongoDB", "Socket.io"]}
+              githubUrl="https://github.com/fadi559/Appjob"
+              demoUrl="https://github.com/fadi559/Appjob"
             />
           </motion.div>
         </div>
