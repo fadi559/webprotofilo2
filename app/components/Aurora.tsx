@@ -137,7 +137,7 @@ export default function Aurora(props) {
     gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
     gl.canvas.style.backgroundColor = 'transparent';
 
-    let program;
+    const program = gl.createProgram();
 
     function resize() {
       if (!ctn) return;

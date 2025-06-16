@@ -117,24 +117,31 @@ const Home = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-12 md:py-20 px-4 max-w-6xl mx-auto relative z-10">
+      <section id="about" className="py-12 md:py-20 relative z-10">
         <div className="section-gradient"></div>
         <motion.div 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 1 }}
-          className="glass p-6 md:p-8 rounded-2xl shadow-2xl"
+          className="max-w-6xl mx-auto px-4"
         >
           <h2 className="section-title">About Me</h2>
-          <p className="text-gray-300 text-base md:text-lg text-center max-w-3xl mx-auto leading-relaxed">
-            Im a passionate full-stack developer with expertise in building modern web and mobile 
-            applications. My strong foundation in both frontend and backend technologies enables me 
-            to deliver seamless, high-performance user experiences across platforms. I specialize in
-            React Native for cross-platform mobile apps, ensuring native-like performance and a polished
-            user experience. On the web, I leverage frameworks like React and Next.js to craft interactive,
-            dynamic interfaces. On the backend, I build scalable APIs using Node.js, Express, and MongoDB.
-            I thrive on turning ideas into robust, real-world solutions that delight users and exceed expectations.
-          </p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="glass p-6 md:p-8 rounded-xl"
+          >
+            <p className="text-lg md:text-xl text-gray-300 mb-6">
+              I&apos;m a passionate Full Stack Developer with expertise in React, Next.js, and Node.js.
+              I love creating modern, responsive web applications and mobile apps that provide
+              exceptional user experiences.
+            </p>
+            <p className="text-lg md:text-xl text-gray-300">
+              With a strong foundation in both frontend and backend development,
+              I strive to build scalable and efficient solutions that solve real-world problems.
+            </p>
+          </motion.div>
         </motion.div>
       </section>
 
