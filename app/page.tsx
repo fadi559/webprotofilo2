@@ -3,9 +3,40 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef, useState, useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Aurora from './components/Aurora'
-import TiltedCard from './components/TiltedCard'
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
-import { SiTypescript, SiJavascript, SiReact, SiNodedotjs, SiMongodb, SiTailwindcss } from "react-icons/si";
+import { 
+  SiTypescript, 
+  SiJavascript, 
+  SiReact, 
+  SiNodedotjs, 
+  SiMongodb, 
+  SiTailwindcss,
+  SiNextdotjs,
+  SiExpress,
+  SiRedux,
+  SiFirebase,
+  SiGit,
+  SiDocker,
+  SiPostgresql,
+  SiPrisma,
+  SiJest,
+  SiCypress,
+  SiVercel,
+  SiNetlify,
+  SiHeroku,
+  SiAwsamplify,
+
+  SiSanity,
+  SiPostman,
+  SiStripe,
+  SiXcode,
+  SiAndroidstudio,
+  SiHtml5,
+  SiCss3,
+} from "react-icons/si";
+import { FaReact, FaLayerGroup, FaChartLine } from "react-icons/fa";
+import { BiLogoPostgresql } from "react-icons/bi";
+import ProjectsSection from './components/ProjectsSection'
 
 const FloatingActionButton = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -45,17 +76,6 @@ const FloatingActionButton = () => {
         </svg>
       </a>
     </motion.div>
-  );
-};
-
-const ScrollProgress = () => {
-  const { scrollYProgress } = useScroll();
-
-  return (
-    <motion.div
-      className="scroll-progress"
-      style={{ scaleX: scrollYProgress }}
-    />
   );
 };
 
@@ -131,14 +151,6 @@ const Home = () => {
               >
                 <FaLinkedin className="text-2xl" />
               </a>
-              <a
-                href="https://twitter.com/yourusername"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
-              >
-                <FaTwitter className="text-2xl" />
-              </a>
             </motion.div>
           </div>
         </section>
@@ -175,14 +187,32 @@ const Home = () => {
         {/* Skills Section */}
         <section className="py-20 px-8 bg-black/50">
           <h2 className="text-4xl font-bold text-center mb-12">Skills</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 max-w-7xl mx-auto">
             {[
               { icon: <SiTypescript className="text-4xl" />, name: "TypeScript" },
               { icon: <SiJavascript className="text-4xl" />, name: "JavaScript" },
               { icon: <SiReact className="text-4xl" />, name: "React" },
+              { icon: <FaReact className="text-4xl" />, name: "React Native" },
+              { icon: <SiNextdotjs className="text-4xl" />, name: "Next.js" },
               { icon: <SiNodedotjs className="text-4xl" />, name: "Node.js" },
+              { icon: <SiExpress className="text-4xl" />, name: "Express" },
               { icon: <SiMongodb className="text-4xl" />, name: "MongoDB" },
-              { icon: <SiTailwindcss className="text-4xl" />, name: "Tailwind" },
+              { icon: <BiLogoPostgresql className="text-4xl" />, name: "PostgreSQL" },
+              { icon: <SiTailwindcss className="text-4xl" />, name: "Tailwind CSS" },
+              { icon: <SiRedux className="text-4xl" />, name: "Redux" },
+              { icon: <FaLayerGroup className="text-4xl" />, name: "Zustand" },
+              { icon: <SiFirebase className="text-4xl" />, name: "Firebase" },
+              { icon: <SiSanity className="text-4xl" />, name: "Sanity" },
+              { icon: <SiPostman className="text-4xl" />, name: "Postman" },
+              { icon: <SiGit className="text-4xl" />, name: "Git" },
+              { icon: <SiVercel className="text-4xl" />, name: "Vercel" },
+              { icon: <SiStripe className="text-4xl" />, name: "Stripe" },
+              { icon: <SiXcode className="text-4xl" />, name: "Xcode" },
+              { icon: <SiAndroidstudio className="text-4xl" />, name: "Android Studio" },
+              { icon: <SiHtml5 className="text-4xl" />, name: "HTML5" },
+              { icon: <SiCss3 className="text-4xl" />, name: "CSS3" },
+              { icon: <FaChartLine className="text-4xl" />, name: "Umami" },
+
             ].map((skill, index) => (
               <motion.div
                 key={skill.name}
@@ -199,27 +229,7 @@ const Home = () => {
         </section>
 
         {/* Projects Section */}
-        <section id="projects" className="py-20 px-8">
-          <h2 className="text-4xl font-bold text-center mb-12">My Projects</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            <TiltedCard
-              title="React Native App"
-              description="A mobile application built with React Native"
-              image="/screenShotTemo.png"
-              tags={["React Native", "TypeScript", "Firebase"]}
-              githubLink="https://github.com/yourusername/react-native-app"
-              demoLink="https://your-app-demo.com"
-            />
-            <TiltedCard
-              title="Node.js Backend"
-              description="A RESTful API built with Node.js and Express"
-              image="/screenShotTemo.png"
-              tags={["Node.js", "Express", "MongoDB"]}
-              githubLink="https://github.com/yourusername/nodejs-backend"
-              demoLink="https://your-api-demo.com"
-            />
-          </div>
-        </section>
+        <ProjectsSection />
 
         {/* Download CV Section */}
         <section className="py-12 md:py-20 relative z-10">
@@ -255,7 +265,7 @@ const Home = () => {
           >
             <h2 className="section-title">Get In Touch</h2>
             <p className="text-gray-300 text-base md:text-lg mb-8">
-              Have a project in mind? Let's discuss how we can work together.
+              Have a project in mind? Let&apos;s discuss how we can work together.
             </p>
             <div className="contact-buttons">
               <a

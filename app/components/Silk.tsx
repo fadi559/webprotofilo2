@@ -3,6 +3,7 @@
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { forwardRef, useRef, useMemo, useLayoutEffect } from "react";
 import { Color } from "three";
+import * as THREE from 'three';
 
 const hexToNormalizedRGB = (hex: string) => {
   hex = hex.replace("#", "");
@@ -70,18 +71,20 @@ void main() {
 }
 `;
 
-const SilkPlane = forwardRef(function SilkPlane({ uniforms }: { uniforms: any }, ref: any) {
+const SilkPlane = forwardRef(function SilkPlane({ uniforms }: { uniforms: Record<string, { value: number | THREE.Color }> }, ref: React.ForwardedRef<THREE.Mesh>) {
   const { viewport } = useThree();
 
   useLayoutEffect(() => {
-    if (ref.current) {
-      ref.current.scale.set(viewport.width, viewport.height, 1);
+    const mesh = (ref as React.RefObject<THREE.Mesh>)?.current;
+    if (mesh) {
+      mesh.scale.set(viewport.width, viewport.height, 1);
     }
   }, [ref, viewport]);
 
   useFrame((_, delta) => {
-    if (ref.current?.material?.uniforms) {
-      ref.current.material.uniforms.uTime.value += 0.1 * delta;
+    const mesh = (ref as React.RefObject<THREE.Mesh>)?.current;
+    if (mesh && (mesh.material as THREE.ShaderMaterial)?.uniforms) {
+      ((mesh.material as THREE.ShaderMaterial).uniforms.uTime.value as number) += 0.1 * delta;
     }
   });
 
@@ -113,7 +116,7 @@ const Silk = ({
   noiseIntensity = 1.5,
   rotation = 0,
 }: SilkProps) => {
-  const meshRef = useRef();
+  const meshRef = useRef<THREE.Mesh>(null);
 
   const uniforms = useMemo(
     () => ({

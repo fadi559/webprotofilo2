@@ -111,9 +111,15 @@ void main() {
 }
 `;
 
-export default function Aurora(props) {
+interface AuroraProps {
+  colorStops?: Array<{ color: string; position: number }>;
+  amplitude?: number;
+  blend?: number;
+}
+
+export default function Aurora(props: AuroraProps) {
   const {
-    colorStops = ["#5227FF", "#7cff67", "#5227FF"],
+    colorStops = [{ color: "#5227FF", position: 0 }, { color: "#7cff67", position: 0.5 }, { color: "#5227FF", position: 1 }],
     amplitude = 1.0,
     blend = 0.5
   } = props;
@@ -123,9 +129,8 @@ export default function Aurora(props) {
   const ctnDom = useRef(null);
 
   useEffect(() => {
-    const ctn = ctnDom.current;
-    if (!ctn) return;
-
+    if (!ctnDom.current) return;
+    const ctn = ctnDom.current as HTMLElement;
     const renderer = new Renderer({
       alpha: true,
       premultipliedAlpha: true,
@@ -142,10 +147,10 @@ export default function Aurora(props) {
       delete geometry.attributes.uv;
     }
 
-    const colorStopsArray = colorStops.map((hex) => {
-      const c = new Color(hex);
-      return [c.r, c.g, c.b];
-    });
+    const colorStopsArray = colorStops.map(stop => {
+      const color = new Color(stop.color);
+      return [color.r, color.g, color.b, stop.position];
+    }).flat();
 
     const program = new Program(gl, {
       vertex: VERT,
@@ -174,17 +179,16 @@ export default function Aurora(props) {
     ctn.appendChild(gl.canvas);
 
     let animateId = 0;
-    const update = (t) => {
+    const update = (t: number) => {
       animateId = requestAnimationFrame(update);
-      const { time = t * 0.01, speed = 1.0 } = propsRef.current;
-      program.uniforms.uTime.value = time * speed * 0.1;
+      program.uniforms.uTime.value = t * 0.001;
       program.uniforms.uAmplitude.value = propsRef.current.amplitude ?? 1.0;
       program.uniforms.uBlend.value = propsRef.current.blend ?? blend;
       const stops = propsRef.current.colorStops ?? colorStops;
-      program.uniforms.uColorStops.value = stops.map((hex) => {
-        const c = new Color(hex);
-        return [c.r, c.g, c.b];
-      });
+      program.uniforms.uColorStops.value = stops.map((stop) => {
+        const c = new Color(stop.color);
+        return [c.r, c.g, c.b, stop.position];
+      }).flat();
       renderer.render({ scene: mesh });
     };
     animateId = requestAnimationFrame(update);

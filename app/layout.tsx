@@ -20,10 +20,13 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} bg-black text-white min-h-screen`}>
         <Aurora
-          colorStops={["#3A29FF", "#FF94B4", "#FF3232"]}
+          colorStops={[
+            { color: "#5227FF", position: 0 },
+            { color: "#7cff67", position: 0.5 },
+            { color: "#5227FF", position: 1 }
+          ]}
           blend={0.5}
           amplitude={1.0}
-          speed={0.5}
         />
         <Script
           src="https://cloud.umami.is/script.js"
