@@ -1,11 +1,63 @@
 'use client'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import Navbar from './components/Navbar'
-import AstronautSpaceBackground from './components/AstronautSpaceBackground'
+import Aurora from './components/Aurora'
+import TiltedCard from './components/TiltedCard'
 
+const FloatingActionButton = () => {
+  const [isVisible, setIsVisible] = useState(false);
 
-const  Home =() =>{
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsVisible(window.scrollY > 300);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0 }}
+      animate={{ 
+        opacity: isVisible ? 1 : 0,
+        scale: isVisible ? 1 : 0
+      }}
+      transition={{ duration: 0.3 }}
+      className="fab"
+    >
+      <a href="#home" className="text-white">
+        <svg
+          className="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M5 10l7-7m0 0l7 7m-7-7v18"
+          />
+        </svg>
+      </a>
+    </motion.div>
+  );
+};
+
+const ScrollProgress = () => {
+  const { scrollYProgress } = useScroll();
+
+  return (
+    <motion.div
+      className="scroll-progress"
+      style={{ scaleX: scrollYProgress }}
+    />
+  );
+};
+
+const Home = () => {
   const containerRef = useRef(null)
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -18,12 +70,19 @@ const  Home =() =>{
 
   return (
     <main ref={containerRef} className="min-h-screen relative">
-      <AstronautSpaceBackground />
+      <ScrollProgress />
       <Navbar />
       
       {/* Hero Section */}
       <section id="home" className="h-screen relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-purple-900/10 via-transparent z-0"></div>
+        <div className="absolute inset-0">
+          <Aurora 
+            colorStops={["#5227FF", "#7cff67", "#5227FF"]}
+            amplitude={1.2}
+            blend={0.6}
+          />
+        </div>
+        <div className="hero-gradient"></div>
         <div className="relative z-20 h-full flex items-center justify-center px-4">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -32,8 +91,15 @@ const  Home =() =>{
             className="text-center"
           >
             <motion.h1 
-              style={{ opacity, scale, y }}
-              className="text-4xl md:text-6xl lg:text-8xl font-bold mb-4 gradient-text"
+              initial={{ opacity: 0, scale: 0.5, y: -50 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ 
+                duration: 1.2,
+                type: "spring",
+                stiffness: 100,
+                damping: 10
+              }}
+              className="section-title"
             >
               Fadi Shqerat
             </motion.h1>
@@ -45,19 +111,59 @@ const  Home =() =>{
             >
               Full Stack Developer
             </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7 }}
+              className="flex justify-center gap-4"
+            >
+              <a href="#projects" className="btn-primary">
+                View Projects
+              </a>
+              <a href="#contact" className="btn-secondary">
+                Contact Me
+              </a>
+            </motion.div>
           </motion.div>
         </div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1 }}
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        >
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+            className="text-gray-400"
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 14l-7 7m0 0l-7-7m7 7V3"
+              />
+            </svg>
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* About Section */}
       <section id="about" className="py-12 md:py-20 px-4 max-w-6xl mx-auto relative z-10">
+        <div className="section-gradient"></div>
         <motion.div 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 1 }}
           className="glass p-6 md:p-8 rounded-2xl shadow-2xl"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 md:mb-8 gradient-text">About Me</h2>
+          <h2 className="section-title">About Me</h2>
           <p className="text-gray-300 text-base md:text-lg text-center max-w-3xl mx-auto leading-relaxed">
             Im a passionate full-stack developer with expertise in building modern web and mobile 
             applications. My strong foundation in both frontend and backend technologies enables me 
@@ -72,19 +178,33 @@ const  Home =() =>{
 
       {/* Skills Section */}
       <section id="skills" className="py-12 md:py-20 relative z-10">
+        <div className="section-gradient"></div>
         <motion.div 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 1 }}
           className="max-w-6xl mx-auto px-4"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12 gradient-text">Skills</h2>
+          <h2 className="section-title">Skills</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-8">
             {[
-              'React', 'Next.js', 'React Native', 'Node.js',
-              'MongoDB', 'Firebase', 'Postman', 'Xcode',
-              'Java', 'JavaScript', 'TypeScript',
-              'Sanity', 'Vercel', 'Prisma', 'TailwindCSS', 'PostgreSQL', 'Stripe'
+              'React',
+              'Next.js',
+              'React Native',
+              'Node.js',
+              'MongoDB',
+              'Firebase',
+              'TypeScript',
+              'TailwindCSS',
+              'Postman',
+              'Xcode',
+              'Java',
+              'JavaScript',
+              'Sanity',
+              'Vercel',
+              'Prisma',
+              'PostgreSQL',
+              'Stripe',
             ].map((skill, index) => (
               <motion.div
                 key={skill}
@@ -103,7 +223,7 @@ const  Home =() =>{
                   scale: 1.05,
                   transition: { duration: 0.3 }
                 }}
-                className="glass p-4 md:p-6 rounded-lg text-center card-hover"
+                className="skill-card"
               >
                 <p className="text-lg md:text-xl font-semibold text-white">{skill}</p>
               </motion.div>
@@ -113,164 +233,102 @@ const  Home =() =>{
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-12 md:py-20 px-4 max-w-6xl mx-auto relative z-10">
+      <section id="projects" className="py-12 md:py-20 relative z-10">
+        <div className="section-gradient"></div>
         <motion.div 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 1 }}
+          className="max-w-6xl mx-auto px-4"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12 gradient-text">Projects</h2>
-          <div className="grid sm:grid-cols-2 gap-6 md:gap-8">
-            {/* React Native Project */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-              className="glass rounded-lg overflow-hidden card-hover"
-            >
-              <div className="h-40 md:h-48 bg-gradient-to-r from-blue-500 to-purple-500"></div>
-              <div className="p-4 md:p-6">
-                <h3 className="text-lg md:text-xl font-bold mb-2 text-white">React Native Project</h3>
-                <p className="text-gray-300 text-sm md:text-base mb-4">
-                 A modern job search mobile application built using React Native. It empowers users who are 
-                 looking for work to seamlessly search for job opportunities, apply directly within the app,
-                  and manage their profiles. The app features a fully functional front-end with intuitive 
-                  navigation, user authentication, profile management, and a powerful search feature. The 
-                  back-end (Node.js, MongoDB) supports secure data management, ensuring reliable performance 
-                  and a smooth user experience.
-
-Features:
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="px-2 md:px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-xs md:text-sm">React Native</span>
-                  <span className="px-2 md:px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-xs md:text-sm">Mobile</span>
-                  <span className="px-2 md:px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-xs md:text-sm">node.Js</span>
-                    <span className="px-2 md:px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-xs md:text-sm">JavaScript</span>
-                </div>
-                <div className="flex gap-4">
-                 
-                  <a href="https://github.com/fadi559/Appjob" className="text-purple-400 hover:text-purple-300 transition-colors text-sm md:text-base">GitHub</a>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Next.js Project */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="glass rounded-lg overflow-hidden card-hover"
-            >
-              <div className="h-40 md:h-48 bg-gradient-to-r from-green-500 to-blue-500"></div>
-              <div className="p-4 md:p-6">
-                <h3 className="text-lg md:text-xl font-bold mb-2 text-white">Next.js Project</h3>
-                <p className="text-gray-300 text-sm md:text-base mb-4">
-                A sleek and modern e-commerce web application built using Next.js and TypeScript,
-                 designed to provide a smooth shopping experience for users. It features a dynamic
-                  product catalog powered by Sanity CMS, allowing easy management of product content,
-                   images, and descriptions. The app also integrates with Stripe for secure and seamless 
-                   payment processing, enabling users to complete purchases with confidence.
-
-
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="px-2 md:px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-xs md:text-sm">Next.js</span>
-                  <span className="px-2 md:px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-xs md:text-sm">React</span>
-                  <span className="px-2 md:px-3 py-1 bg-yellow-500/20 text-yellow-300 rounded-full text-xs md:text-sm">Stripe</span>
-                  <span className="px-2 md:px-3 py-1 bg-red-500/20 text-red-300 rounded-full text-xs md:text-sm">Sanity</span>
-                  <span className="px-2 md:px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-xs md:text-sm">TypeScript</span>
-                  <span className="px-2 md:px-3 py-1 bg-teal-500/20 text-teal-300 rounded-full text-xs md:text-sm">TailwindCSS</span>
-                  <span className="px-2 md:px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-xs md:text-sm">Prisma</span>
-                  <span className="px-2 md:px-3 py-1 bg-pink-500/20 text-pink-300 rounded-full text-xs md:text-sm">PostgreSQL</span>
-                  <span className="px-2 md:px-3 py-1 bg-gray-500/20 text-gray-300 rounded-full text-xs md:text-sm">Vercel</span>
-                  <span className="px-2 md:px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-xs md:text-sm">Umami</span>
-
-                </div>
-                <div className="flex gap-4">
-                  <a href="https://temoupro.vercel.app/" className="text-purple-400 hover:text-purple-300 transition-colors text-sm md:text-base">View Demo</a>
-                  <a href="https://github.com/fadi559/temoupro" className="text-purple-400 hover:text-purple-300 transition-colors text-sm md:text-base">GitHub</a>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Node.js Project */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="glass rounded-lg overflow-hidden card-hover"
-            >
-              <div className="h-40 md:h-48 bg-gradient-to-r from-yellow-500 to-red-500"></div>
-              <div className="p-4 md:p-6">
-                <h3 className="text-lg md:text-xl font-bold mb-2 text-white">Node.js Project</h3>
-                <p className="text-gray-300 text-sm md:text-base mb-4">
-                  A complete backend API built to support a feature-rich notes application, developed 
-                with a focus on efficiency and functionality. This backend handles user authentication 
-                (signup and login), data management (create, search, update, and delete notes), as well
-                 as uploads for user skills and experience. Designed to integrate seamlessly with a React Native 
-                 frontend, it enables users to manage their notes and profiles with ease
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="px-2 md:px-3 py-1 bg-yellow-500/20 text-yellow-300 rounded-full text-xs md:text-sm">Node.js</span>
-                  <span className="px-2 md:px-3 py-1 bg-red-500/20 text-red-300 rounded-full text-xs md:text-sm">Backend</span>
-                  <span className="px-2 md:px-3 py-1 bg-red-500/20 text-red-300 rounded-full text-xs md:text-sm">JavaScript</span>
-
-                </div>
-                <div className="flex gap-4">
-                  {/* <a href="#" className="text-purple-400 hover:text-purple-300 transition-colors text-sm md:text-base">View Demo</a> */}
-                  <a href="https://github.com/fadi559/FadiNodejss" className="text-purple-400 hover:text-purple-300 transition-colors text-sm md:text-base">GitHub</a>
-                </div>
-              </div>
-            </motion.div>
+          <h2 className="section-title">Projects</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <TiltedCard
+              title="React Native Job Search App"
+              description="A mobile application built with React Native for job searching and application tracking."
+              image="/AppIcon~ios-marketing.png"
+              tags={['React Native', 'node.Js', 'Redux']}
+              githubLink="https://github.com/fadi559/Appjob"
+              
+            />
+            <TiltedCard
+              title="E-commerce Web App"
+              description="A full-stack e-commerce platform built with Next.js and node.Js integration."
+              image="/screenShotTemo.png"
+              tags={['Next.js', 'Stripe', 'MongoDB,Node.JS,Prisma,']}
+              githubLink="https://github.com/fadi559/temoupro"
+              demoLink="https://temoupro.vercel.app/"
+            />
+            <TiltedCard
+              title="Node.js Backend API"
+              description="A robust RESTful API built with Node.js and Express for a social media platform."
+              image="/screenShotTemo.png"
+              tags={['Node.js', 'Express', 'MongoDB']}
+              githubLink="https://github.com/fadi559/FadiNodejss"
+             
+            />
           </div>
         </motion.div>
       </section>
 
       {/* Download CV Section */}
-      <section id="download-cv" className="py-12 md:py-20 relative z-10">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <div className="glass p-6 md:p-8 rounded-2xl shadow-2xl">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 md:mb-8 gradient-text">Download My CV</h2>
-            <p className="text-gray-300 text-base md:text-lg mb-6 md:mb-8">
-              Interested in working together or learning more about my experience? Download my CV below!
-            </p>
-            <a
-             href="/NewstCV.pdf"
-              download
-              className="inline-block bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 md:px-8 py-2 md:py-3 rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all shadow-lg text-sm md:text-base btn-primary"
-            >
-              Download CV
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="py-12 md:py-20 relative z-10">
+      <section className="py-12 md:py-20 relative z-10">
+        <div className="section-gradient"></div>
         <motion.div 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 1 }}
-          className="max-w-4xl mx-auto px-4 text-center"
+          className="max-w-6xl mx-auto px-4 text-center"
         >
-          <div className="glass p-6 md:p-8 rounded-2xl shadow-2xl">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 md:mb-8 gradient-text">Get In Touch</h2>
-            <p className="text-gray-300 text-base md:text-lg mb-6 md:mb-8">
-              I&apos;m always open to new opportunities and collaborations.
-            </p>
-            <motion.a
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-             href="mailto:fadishqerat54@icloud.com"
-              className="inline-block bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 md:px-8 py-2 md:py-3 rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all shadow-lg text-sm md:text-base"
+          <h2 className="section-title">Download My CV</h2>
+          <p className="text-gray-300 text-base md:text-lg mb-8">
+            Want to know more about my experience and skills? Download my CV to learn more.
+          </p>
+          <a
+            href="/cv.pdf"
+            download
+            className="cv-download"
+          >
+            Download CV
+          </a>
+        </motion.div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-12 md:py-20 relative z-10">
+        <div className="section-gradient"></div>
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          className="max-w-6xl mx-auto px-4 text-center"
+        >
+          <h2 className="section-title">Get In Touch</h2>
+          <p className="text-gray-300 text-base md:text-lg mb-8">
+            Have a project in mind? Let's discuss how we can work together.
+          </p>
+          <div className="contact-buttons">
+            <a
+              href="mailto:your.email@example.com"
+              className="btn-primary"
             >
-              Contact Me
-            </motion.a>
+              Email Me
+            </a>
+            <a
+              href="https://www.linkedin.com/in/fadi-shqerat-60877a254 "
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary"
+            >
+              LinkedIn
+            </a>
           </div>
         </motion.div>
       </section>
+
+      <FloatingActionButton />
     </main>
   )
 }
 
-export default Home;
+export default Home
