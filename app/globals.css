@@ -41,27 +41,17 @@ html {
 
 /* Glass effect */
 .glass {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 }
 
 /* Gradient text */
 .gradient-text {
-  background: linear-gradient(45deg, #FF6B6B, #4ECDC4, #45B7D1);
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  background-size: 200% 200%;
-  animation: gradient 8s ease infinite;
-}
-
-@keyframes gradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
 }
 
 /* Custom scrollbar */
@@ -74,8 +64,12 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #8b5cf6, #ec4899);
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
 }
 
 /* Smooth transitions */
@@ -87,79 +81,21 @@ html {
 
 /* Card hover effect */
 .card-hover {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-}
-
-.card-hover::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    45deg,
-    transparent,
-    rgba(255, 255, 255, 0.1),
-    transparent
-  );
-  transform: translateX(-100%);
-  transition: transform 0.6s;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card-hover:hover {
   transform: translateY(-5px);
-  box-shadow: 0 20px 40px -20px rgba(147, 51, 234, 0.4);
-}
-
-.card-hover:hover::before {
-  transform: translateX(100%);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 /* Button styles */
 .btn-primary {
-  @apply px-6 py-3 rounded-lg bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-primary::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.2),
-    transparent
-  );
-  transition: 0.5s;
-}
-
-.btn-primary:hover::before {
-  left: 100%;
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  @apply px-6 py-3 rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold transition-all duration-300 hover:from-blue-600 hover:to-purple-600 hover:shadow-lg;
 }
 
 .btn-secondary {
-  @apply px-6 py-3 rounded-lg border-2 border-white/20 text-white font-semibold;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-}
-
-.btn-secondary:hover {
-  @apply border-white/40 bg-white/10;
-  transform: translateY(-2px);
+  @apply px-6 py-3 rounded-lg border-2 border-white/20 text-white font-semibold transition-all duration-300 hover:bg-white/10 hover:border-white/30;
 }
 
 /* Section styles */
@@ -188,14 +124,9 @@ html {
 }
 
 /* Mobile optimizations */
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .glass {
     backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-  }
-  
-  .card-hover:hover {
-    transform: none;
   }
 }
 
@@ -320,113 +251,40 @@ h1, h2, h3, h4, h5, h6, p, span, a, li, button {
 
 /* Project card styles */
 .project-card {
-  @apply glass rounded-xl overflow-hidden shadow-2xl backdrop-blur-lg border border-white/20 transform-gpu;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  @apply relative overflow-hidden rounded-xl;
 }
 
-.project-card:hover {
-  transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 20px 40px -20px rgba(147, 51, 234, 0.4);
+.project-image {
+  @apply w-full h-48 object-cover transition-transform duration-500;
+}
+
+.project-card:hover .project-image {
+  @apply transform scale-110;
+}
+
+.project-overlay {
+  @apply absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 transition-opacity duration-300;
+}
+
+.project-card:hover .project-overlay {
+  @apply opacity-100;
 }
 
 /* Skill Cards */
 .skill-card {
-  @apply bg-white/5 backdrop-blur-lg rounded-xl p-4 md:p-6 border border-white/10 relative overflow-hidden;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  transition: all 0.3s ease;
-}
-
-.skill-card-inner {
-  @apply relative w-full h-full;
-  perspective: 1000px;
-}
-
-.skill-background {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    circle at center,
-    rgba(255, 255, 255, 0.15) 0%,
-    rgba(255, 255, 255, 0.05) 50%,
-    transparent 100%
-  );
-  border-radius: 0.75rem;
-  transform-origin: center;
-  filter: blur(8px);
-}
-
-.skill-particles {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  border-radius: 0.75rem;
-}
-
-.particle {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 50%;
-  pointer-events: none;
-  filter: blur(1px);
-}
-
-.particle:nth-child(1) { left: 20%; top: 50%; }
-.particle:nth-child(2) { left: 40%; top: 30%; }
-.particle:nth-child(3) { left: 60%; top: 70%; }
-.particle:nth-child(4) { left: 80%; top: 40%; }
-.particle:nth-child(5) { left: 50%; top: 20%; }
-.particle:nth-child(6) { left: 30%; top: 60%; }
-.particle:nth-child(7) { left: 70%; top: 50%; }
-.particle:nth-child(8) { left: 45%; top: 80%; }
-
-.skill-rings {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.ring {
-  position: absolute;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  width: 100%;
-  height: 100%;
-  transform-origin: center;
+  @apply p-6 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 transition-all duration-300;
 }
 
 .skill-card:hover {
-  @apply border-white/30;
-  box-shadow: 
-    0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05),
-    0 0 30px rgba(255, 255, 255, 0.15);
+  @apply bg-white/10 transform scale-105;
 }
 
-.skill-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    45deg,
-    transparent,
-    rgba(255, 255, 255, 0.2),
-    transparent
-  );
-  transform: translateX(-100%);
-  transition: transform 0.6s;
+.skill-icon {
+  @apply text-4xl mb-4 transition-transform duration-300;
 }
 
-.skill-card:hover::before {
-  transform: translateX(100%);
-}
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+.skill-card:hover .skill-icon {
+  @apply transform scale-110;
 }
 
 /* Section background gradients */
@@ -437,19 +295,12 @@ h1, h2, h3, h4, h5, h6, p, span, a, li, button {
 
 /* Floating action button */
 .fab {
-  @apply fixed bottom-8 right-8 z-50 glass p-4 rounded-full shadow-lg hover:shadow-xl transition-all;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.fab:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px -10px rgba(147, 51, 234, 0.4);
+  @apply fixed bottom-8 right-8 z-50 p-4 rounded-full bg-white/10 hover:bg-white/20 transition-colors duration-300;
 }
 
 /* Scroll progress bar */
 .scroll-progress {
-  @apply fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-500 to-pink-500 origin-left z-50;
-  box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+  @apply fixed top-0 left-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 z-50;
 }
 
 /* Profile image container */
@@ -459,24 +310,6 @@ h1, h2, h3, h4, h5, h6, p, span, a, li, button {
 
 .profile-image-inner {
   @apply w-full h-full rounded-full bg-black overflow-hidden;
-}
-
-/* Project overlay */
-.project-overlay {
-  @apply absolute inset-0 bg-black/50 flex items-center justify-center backdrop-blur-sm;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.project-content {
-  @apply text-center text-white p-4;
-  transform: translateY(20px);
-  opacity: 0;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.project-card:hover .project-content {
-  transform: translateY(0);
-  opacity: 1;
 }
 
 /* Contact section */
@@ -519,27 +352,6 @@ h1, h2, h3, h4, h5, h6, p, span, a, li, button {
     rgba(139, 92, 246, 0.1) 0%,
     transparent 70%
   );
-}
-
-/* Skill card enhancements */
-.skill-card:hover .skill-icon {
-  transform: scale(1.1);
-}
-
-.skill-icon {
-  @apply text-4xl mb-2 transform transition-transform;
-  filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.3));
-}
-
-/* Project card enhancements */
-.project-image {
-  @apply w-full h-full object-cover transition-transform duration-500;
-  filter: brightness(0.8);
-}
-
-.project-card:hover .project-image {
-  transform: scale(1.1);
-  filter: brightness(0.6);
 }
 
 /* Section title enhancements */

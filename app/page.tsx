@@ -4,6 +4,8 @@ import { useRef, useState, useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Aurora from './components/Aurora'
 import TiltedCard from './components/TiltedCard'
+import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { SiTypescript, SiJavascript, SiReact, SiNodedotjs, SiMongodb, SiTailwindcss } from "react-icons/si";
 
 const FloatingActionButton = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -58,317 +60,222 @@ const ScrollProgress = () => {
 };
 
 const Home = () => {
-  const containerRef = useRef(null)
+  const containerRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
   })
 
+  const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
+  const y = useTransform(scrollYProgress, [0, 0.2], [0, 100]);
+
   return (
-    <main ref={containerRef} className="min-h-screen relative">
-      <ScrollProgress />
-      <Navbar />
-      
-      {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-        <Aurora />
-        <div className="max-w-6xl mx-auto px-4 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-center"
-          >
-            <motion.h1 
-              className="text-4xl md:text-6xl font-bold mb-4 gradient-text"
+    <main ref={containerRef} className="min-h-screen bg-black text-white">
+      <motion.div
+        style={{ opacity, scale, y }}
+        className="fixed inset-0 z-0"
+      >
+        <Aurora
+          amplitude={0.5}
+          blend={0.5}
+          colorStops={[
+            { color: "#ff0000", position: 0 },
+            { color: "#00ff00", position: 0.5 },
+            { color: "#0000ff", position: 1 },
+          ]}
+        />
+      </motion.div>
+
+      <div className="relative z-10">
+        <Navbar />
+        
+        {/* Hero Section */}
+        <section className="min-h-screen flex items-center justify-center p-8">
+          <div className="text-center">
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              transition={{ duration: 0.8 }}
+              className="text-6xl font-bold mb-4"
             >
-              Fadi Shqerat
+              Hi, I&apos;m Fadi
             </motion.h1>
-            <motion.h2 
-              className="text-2xl md:text-3xl mb-8 text-gray-300"
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-xl mb-8"
             >
               Full Stack Developer
-            </motion.h2>
+            </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              className="flex flex-wrap justify-center gap-4"
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="flex justify-center gap-4"
             >
-              <a href="#projects" className="btn-primary">
-                View Projects
+              <a
+                href="https://github.com/yourusername"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+              >
+                <FaGithub className="text-2xl" />
               </a>
-              <a href="#contact" className="btn-secondary">
-                Contact Me
+              <a
+                href="https://linkedin.com/in/yourusername"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+              >
+                <FaLinkedin className="text-2xl" />
+              </a>
+              <a
+                href="https://twitter.com/yourusername"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+              >
+                <FaTwitter className="text-2xl" />
               </a>
             </motion.div>
-          </motion.div>
-        </div>
-      </section>
+          </div>
+        </section>
 
-      {/* About Section */}
-      <section id="about" className="py-12 md:py-20 relative z-10">
-        <div className="section-gradient"></div>
-        <motion.div 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          className="max-w-6xl mx-auto px-4"
-        >
-          <h2 className="section-title">About Me</h2>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="glass p-6 md:p-8 rounded-xl"
+        {/* About Section */}
+        <section id="about" className="py-12 md:py-20 relative z-10">
+          <div className="section-gradient"></div>
+          <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            className="max-w-6xl mx-auto px-4"
           >
-            <p className="text-lg md:text-xl text-gray-300 mb-6">
-              I&apos;m a passionate Full Stack Developer with expertise in React, Next.js, and Node.js.
-              I love creating modern, responsive web applications and mobile apps that provide
-              exceptional user experiences.
-            </p>
-            <p className="text-lg md:text-xl text-gray-300">
-              With a strong foundation in both frontend and backend development,
-              I strive to build scalable and efficient solutions that solve real-world problems.
-            </p>
+            <h2 className="section-title">About Me</h2>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="glass p-6 md:p-8 rounded-xl"
+            >
+              <p className="text-lg md:text-xl text-gray-300 mb-6">
+                I&apos;m a passionate Full Stack Developer with expertise in React, Next.js, and Node.js.
+                I love creating modern, responsive web applications and mobile apps that provide
+                exceptional user experiences.
+              </p>
+              <p className="text-lg md:text-xl text-gray-300">
+                With a strong foundation in both frontend and backend development,
+                I strive to build scalable and efficient solutions that solve real-world problems.
+              </p>
+            </motion.div>
           </motion.div>
-        </motion.div>
-      </section>
+        </section>
 
-      {/* Skills Section */}
-      <section id="skills" className="py-12 md:py-20 relative z-10">
-        <div className="section-gradient"></div>
-        <motion.div 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          className="max-w-6xl mx-auto px-4"
-        >
-          <motion.h2 
-            className="section-title"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            Skills
-          </motion.h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-8">
+        {/* Skills Section */}
+        <section className="py-20 px-8 bg-black/50">
+          <h2 className="text-4xl font-bold text-center mb-12">Skills</h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 max-w-6xl mx-auto">
             {[
-              'React',
-              'Next.js',
-              'React Native',
-              'Node.js',
-              'MongoDB',
-              'Firebase',
-              'TypeScript',
-              'TailwindCSS',
-              'Postman',
-              'Xcode',
-              'Java',
-              'JavaScript',
-              'Sanity',
-              'Vercel',
-              'Prisma',
-              'PostgreSQL',
-              'Stripe',
+              { icon: <SiTypescript className="text-4xl" />, name: "TypeScript" },
+              { icon: <SiJavascript className="text-4xl" />, name: "JavaScript" },
+              { icon: <SiReact className="text-4xl" />, name: "React" },
+              { icon: <SiNodedotjs className="text-4xl" />, name: "Node.js" },
+              { icon: <SiMongodb className="text-4xl" />, name: "MongoDB" },
+              { icon: <SiTailwindcss className="text-4xl" />, name: "Tailwind" },
             ].map((skill, index) => (
               <motion.div
-                key={skill}
-                initial={{ opacity: 0, y: 50, scale: 0.8 }}
-                whileInView={{ 
-                  opacity: 1, 
-                  y: 0,
-                  scale: 1,
-                  transition: {
-                    duration: 0.5,
-                    delay: index * 0.1,
-                    type: "spring",
-                    stiffness: 100
-                  }
-                }}
-                whileHover={{ 
-                  scale: 1.1,
-                  transition: { 
-                    duration: 0.3,
-                    type: "spring",
-                    stiffness: 200
-                  }
-                }}
+                key={skill.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="skill-card group"
               >
-                <div className="skill-card-inner">
-                  <motion.p 
-                    className="text-lg md:text-xl font-semibold text-white relative z-10"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ type: "spring", stiffness: 400 }}
-                  >
-                    {skill}
-                  </motion.p>
-                  <motion.div 
-                    className="skill-background"
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    whileHover={{ 
-                      scale: 1.2,
-                      opacity: 1,
-                      transition: { duration: 0.3 }
-                    }}
-                  />
-                  <motion.div 
-                    className="skill-particles"
-                    initial={{ opacity: 0 }}
-                    whileHover={{ opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {[...Array(8)].map((_, i) => (
-                      <motion.div
-                        key={i}
-                        className="particle"
-                        animate={{
-                          y: [0, -30, 0],
-                          x: [0, Math.random() * 40 - 20, 0],
-                          opacity: [0, 1, 0],
-                          scale: [0, 1, 0],
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          delay: i * 0.15,
-                          ease: "easeInOut"
-                        }}
-                      />
-                    ))}
-                  </motion.div>
-                  <motion.div 
-                    className="skill-rings"
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    whileHover={{ 
-                      scale: 1.2,
-                      opacity: 1,
-                      transition: { duration: 0.5 }
-                    }}
-                  >
-                    {[...Array(3)].map((_, i) => (
-                      <motion.div
-                        key={i}
-                        className="ring"
-                        animate={{
-                          scale: [1, 1.2, 1],
-                          opacity: [0.5, 0.2, 0.5],
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          delay: i * 0.3,
-                        }}
-                      />
-                    ))}
-                  </motion.div>
-                </div>
+                <div className="skill-icon">{skill.icon}</div>
+                <h3 className="text-lg font-semibold mt-2">{skill.name}</h3>
               </motion.div>
             ))}
           </div>
-        </motion.div>
-      </section>
+        </section>
 
-      {/* Projects Section */}
-      <section id="projects" className="py-12 md:py-20 relative z-10">
-        <div className="section-gradient"></div>
-        <motion.div 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          className="max-w-6xl mx-auto px-4"
-        >
-          <h2 className="section-title">Projects</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Projects Section */}
+        <section id="projects" className="py-20 px-8">
+          <h2 className="text-4xl font-bold text-center mb-12">My Projects</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             <TiltedCard
-              title="React Native Job Search App"
-              description="A mobile application built with React Native for job searching and application tracking."
-              image="/AppIcon~ios-marketing.png"
-              tags={['React Native', 'node.Js', 'Redux']}
-              githubLink="https://github.com/fadi559/Appjob"
-              
-            />
-            <TiltedCard
-              title="E-commerce Web App"
-              description="A full-stack e-commerce platform built with Next.js and node.Js integration."
+              title="React Native App"
+              description="A mobile application built with React Native"
               image="/screenShotTemo.png"
-              tags={['Next.js', 'Stripe', 'MongoDB,Node.JS,Prisma,']}
-              githubLink="https://github.com/fadi559/temoupro"
-              demoLink="https://temoupro.vercel.app/"
+              tags={["React Native", "TypeScript", "Firebase"]}
+              githubLink="https://github.com/yourusername/react-native-app"
+              demoLink="https://your-app-demo.com"
             />
             <TiltedCard
-              title="Node.js Backend API"
-              description="A robust RESTful API built with Node.js and Express for a social media platform."
-             image="/AppIcon~ios-marketing.png"
-              tags={['Node.js', 'Express', 'MongoDB']}
-              githubLink="https://github.com/fadi559/FadiNodejss"
-             
+              title="Node.js Backend"
+              description="A RESTful API built with Node.js and Express"
+              image="/screenShotTemo.png"
+              tags={["Node.js", "Express", "MongoDB"]}
+              githubLink="https://github.com/yourusername/nodejs-backend"
+              demoLink="https://your-api-demo.com"
             />
           </div>
-        </motion.div>
-      </section>
+        </section>
 
-      {/* Download CV Section */}
-      <section className="py-12 md:py-20 relative z-10">
-        <div className="section-gradient"></div>
-        <motion.div 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          className="max-w-6xl mx-auto px-4 text-center"
-        >
-          <h2 className="section-title">Download My CV</h2>
-          <p className="text-gray-300 text-base md:text-lg mb-8">
-            Want to know more about my experience and skills? Download my CV to learn more.
-          </p>
-          <a
-            href="/cv.pdf"
-            download
-            className="cv-download"
+        {/* Download CV Section */}
+        <section className="py-12 md:py-20 relative z-10">
+          <div className="section-gradient"></div>
+          <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            className="max-w-6xl mx-auto px-4 text-center"
           >
-            Download CV
-          </a>
-        </motion.div>
-      </section>
+            <h2 className="section-title">Download My CV</h2>
+            <p className="text-gray-300 text-base md:text-lg mb-8">
+              Want to know more about my experience and skills? Download my CV to learn more.
+            </p>
+            <a
+              href="/cv.pdf"
+              download
+              className="cv-download"
+            >
+              Download CV
+            </a>
+          </motion.div>
+        </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="py-12 md:py-20 relative z-10">
-        <div className="section-gradient"></div>
-        <motion.div 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          className="max-w-6xl mx-auto px-4 text-center"
-        >
-          <h2 className="section-title">Get In Touch</h2>
-          <p className="text-gray-300 text-base md:text-lg mb-8">
-            Have a project in mind? Let's discuss how we can work together.
-          </p>
-          <div className="contact-buttons">
-            <a
-              href="mailto:your.email@example.com"
-              className="btn-primary"
-            >
-              Email Me
-            </a>
-            <a
-              href="https://www.linkedin.com/in/fadi-shqerat-60877a254 "
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-secondary"
-            >
-              LinkedIn
-            </a>
-          </div>
-        </motion.div>
-      </section>
+        {/* Contact Section */}
+        <section id="contact" className="py-12 md:py-20 relative z-10">
+          <div className="section-gradient"></div>
+          <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            className="max-w-6xl mx-auto px-4 text-center"
+          >
+            <h2 className="section-title">Get In Touch</h2>
+            <p className="text-gray-300 text-base md:text-lg mb-8">
+              Have a project in mind? Let's discuss how we can work together.
+            </p>
+            <div className="contact-buttons">
+              <a
+                href="mailto:your.email@example.com"
+                className="btn-primary"
+              >
+                Email Me
+              </a>
+              <a
+                href="https://www.linkedin.com/in/fadi-shqerat-60877a254 "
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary"
+              >
+                LinkedIn
+              </a>
+            </div>
+          </motion.div>
+        </section>
+      </div>
 
       <FloatingActionButton />
     </main>

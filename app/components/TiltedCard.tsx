@@ -1,7 +1,7 @@
 'use client'
 
-import { useState, useRef } from 'react'
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
+import { motion, useMotionValue, useTransform } from 'framer-motion'
+import { useRef } from 'react'
 import Image from 'next/image'
 
 interface TiltedCardProps {
@@ -13,18 +13,20 @@ interface TiltedCardProps {
   demoLink?: string
 }
 
-const TiltedCard = ({
+export default function TiltedCard({
   title,
   description,
   image,
   tags,
   githubLink,
-  demoLink
-}: TiltedCardProps) => {
-  const [isHovered, setIsHovered] = useState(false)
+  demoLink,
+}: TiltedCardProps) {
   const cardRef = useRef<HTMLDivElement>(null)
   const x = useMotionValue(0.5)
   const y = useMotionValue(0.5)
+
+  const rotateX = useTransform(y, [0, 1], [15, -15])
+  const rotateY = useTransform(x, [0, 1], [-15, 15])
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return
@@ -43,7 +45,6 @@ const TiltedCard = ({
   const handleMouseLeave = () => {
     x.set(0.5)
     y.set(0.5)
-    setIsHovered(false)
   }
 
   return (
@@ -51,11 +52,10 @@ const TiltedCard = ({
       ref={cardRef}
       className="project-card"
       onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={handleMouseLeave}
       style={{
-        rotateX: useTransform(y, [0, 1], [15, -15]),
-        rotateY: useTransform(x, [0, 1], [-15, 15]),
+        rotateX,
+        rotateY,
         transformStyle: "preserve-3d",
       }}
     >
@@ -109,6 +109,4 @@ const TiltedCard = ({
       </div>
     </motion.div>
   )
-}
-
-export default TiltedCard 
+} 
