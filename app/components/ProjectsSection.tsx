@@ -30,9 +30,9 @@ const ProjectsSection = () => {
               image="/AppIcon~ios-marketing.png"
               title="React Native Job Search App"
               description="A job search mobile app with Face ID login and advanced filters"
-              tags={["React Native", "Node.js", "MongoDB"]}
-              githubLink="https://github.com/yourusername/react-native-app"
-              demoLink="https://your-app-demo.com"
+              tags={["React Native", "Node.js", "MongoDB",  ]}
+              githubLink="https://github.com/fadi559/Appjob"
+              
             />
           </motion.div>
 
@@ -53,9 +53,9 @@ const ProjectsSection = () => {
               image="/screenShotTemo.png"
               title="Next.js E-commerce Platform"
               description="A modern e-commerce platform with Stripe integration"
-              tags={["Next.js", "TypeScript", "Stripe"]}
-              githubLink="https://github.com/yourusername/nextjs-ecommerce"
-              demoLink="https://your-ecommerce-demo.com"
+              tags={["Next.js", "TypeScript", "Prisma", "Tailwind CSS", "Stripe","sanity","PostgreSQL",]} 
+              githubLink="https://github.com/fadi559/temoupro"
+              demoLink="https://temoupro.vercel.app/"
             />
           </motion.div>
 
@@ -76,9 +76,9 @@ const ProjectsSection = () => {
               image="/AppIcon~ios-marketing.png"
               title="Node.js Backend API"
               description="A robust backend API with real-time features"
-              tags={["Node.js", "Express", "MongoDB"]}
-              githubLink="https://github.com/yourusername/nodejs-api"
-              demoLink="https://your-api-demo.com"
+              tags={["Node.js", "Express", "MongoDB ","Cloudinary"]}
+              githubLink="https://github.com/fadi559/FadiNodejss"
+             
             />
           </motion.div>
         </div>

@@ -23,7 +23,8 @@ import {
   SiAndroidstudio,
   SiHtml5,
   SiCss3,
-  SiSanity
+  SiSanity,
+  SiPrisma
 } from "react-icons/si";
 import { FaReact, FaLayerGroup, FaChartLine } from "react-icons/fa";
 import { BiLogoPostgresql } from "react-icons/bi";
@@ -135,6 +136,8 @@ const Home = () => {
                   1000,
                   'Node.js Developer',
                   1000,
+                   'ReactNative Developer',
+                  1000,
                 ]}
                 wrapper="span"
                 speed={50}
@@ -149,7 +152,7 @@ const Home = () => {
               className="flex justify-center gap-4"
             >
               <motion.a
-                href="https://github.com/yourusername"
+                href="https://github.com/fadi559"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
@@ -159,7 +162,7 @@ const Home = () => {
                 <FaGithub className="text-2xl" />
               </motion.a>
               <motion.a
-                href="https://linkedin.com/in/yourusername"
+                href="https://www.linkedin.com/in/fadi-shqerat-60877a254"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
@@ -231,6 +234,7 @@ const Home = () => {
               { icon: <SiExpress className="text-4xl" />, name: "Express" },
               { icon: <SiMongodb className="text-4xl" />, name: "MongoDB" },
               { icon: <BiLogoPostgresql className="text-4xl" />, name: "PostgreSQL" },
+              { icon: <SiPrisma className="text-4xl" />, name: "Prisma" },
               { icon: <SiTailwindcss className="text-4xl" />, name: "Tailwind CSS" },
               { icon: <SiRedux className="text-4xl" />, name: "Redux" },
               { icon: <FaLayerGroup className="text-4xl" />, name: "Zustand" },
@@ -245,7 +249,6 @@ const Home = () => {
               { icon: <SiHtml5 className="text-4xl" />, name: "HTML5" },
               { icon: <SiCss3 className="text-4xl" />, name: "CSS3" },
               { icon: <FaChartLine className="text-4xl" />, name: "Umami" },
-
             ].map((skill, index) => (
               <motion.div
                 key={skill.name}
@@ -278,7 +281,7 @@ const Home = () => {
               Want to know more about my experience and skills? Download my CV to learn more.
             </p>
             <a
-              href="/cv.pdf"
+              href="NewstCV.pdf"
               download
               className="cv-download"
             >
@@ -302,7 +305,7 @@ const Home = () => {
             </p>
             <div className="contact-buttons">
               <a
-                href="mailto:your.email@example.com"
+                href="mailto:fadishqerat54@icloud.com"
                 className="btn-primary"
               >
                 Email Me
