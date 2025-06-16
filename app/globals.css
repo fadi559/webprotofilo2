@@ -50,11 +50,18 @@ html {
 
 /* Gradient text */
 .gradient-text {
-  background: linear-gradient(to right, #8b5cf6, #ec4899);
+  background: linear-gradient(45deg, #FF6B6B, #4ECDC4, #45B7D1);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  text-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+  background-size: 200% 200%;
+  animation: gradient 8s ease infinite;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 /* Custom scrollbar */
@@ -113,56 +120,46 @@ html {
 
 /* Button styles */
 .btn-primary {
-  @apply bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-lg 
-  hover:from-purple-600 hover:to-pink-600 transition-all shadow-lg relative overflow-hidden;
+  @apply px-6 py-3 rounded-lg bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold;
+  transition: all 0.3s ease;
   position: relative;
+  overflow: hidden;
 }
 
 .btn-primary::before {
   content: '';
   position: absolute;
   top: 0;
-  left: 0;
+  left: -100%;
   width: 100%;
   height: 100%;
   background: linear-gradient(
-    45deg,
+    90deg,
     transparent,
     rgba(255, 255, 255, 0.2),
     transparent
   );
-  transform: translateX(-100%);
-  transition: transform 0.6s;
+  transition: 0.5s;
 }
 
 .btn-primary:hover::before {
-  transform: translateX(100%);
+  left: 100%;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .btn-secondary {
-  @apply bg-white/10 text-white px-6 py-3 rounded-lg 
-  hover:bg-white/20 transition-all shadow-lg backdrop-blur-sm relative overflow-hidden;
+  @apply px-6 py-3 rounded-lg border-2 border-white/20 text-white font-semibold;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
 }
 
-.btn-secondary::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    45deg,
-    transparent,
-    rgba(255, 255, 255, 0.1),
-    transparent
-  );
-  transform: translateX(-100%);
-  transition: transform 0.6s;
-}
-
-.btn-secondary:hover::before {
-  transform: translateX(100%);
+.btn-secondary:hover {
+  @apply border-white/40 bg-white/10;
+  transform: translateY(-2px);
 }
 
 /* Section styles */
@@ -334,7 +331,7 @@ h1, h2, h3, h4, h5, h6, p, span, a, li, button {
 
 /* Skill Cards */
 .skill-card {
-  @apply bg-white/10 backdrop-blur-lg rounded-xl p-4 md:p-6 border border-white/20;
+  @apply bg-white/10 backdrop-blur-lg rounded-xl p-4 md:p-6 border border-white/20 relative overflow-hidden;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   transition: all 0.3s ease;
 }
@@ -343,6 +340,18 @@ h1, h2, h3, h4, h5, h6, p, span, a, li, button {
   @apply bg-white/20 border-white/30;
   transform: translateY(-5px);
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.skill-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.skill-card:hover .skill-glow {
+  opacity: 1;
 }
 
 /* Section background gradients */
@@ -460,7 +469,11 @@ h1, h2, h3, h4, h5, h6, p, span, a, li, button {
 
 /* Section title enhancements */
 .section-title {
-  @apply text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12 gradient-text;
+  @apply text-3xl md:text-4xl font-bold mb-8 text-center;
+  background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
   position: relative;
   display: inline-block;
 }
@@ -468,11 +481,22 @@ h1, h2, h3, h4, h5, h6, p, span, a, li, button {
 .section-title::after {
   content: '';
   position: absolute;
-  bottom: -10px;
+  bottom: -5px;
   left: 50%;
   transform: translateX(-50%);
   width: 50px;
   height: 3px;
-  background: linear-gradient(to right, #8b5cf6, #ec4899);
+  background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
   border-radius: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .skill-card {
+    @apply p-3;
+  }
+  
+  .section-title {
+    @apply text-2xl;
+  }
 }

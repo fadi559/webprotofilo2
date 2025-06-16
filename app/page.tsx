@@ -74,48 +74,36 @@ const Home = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <section id="home" className="h-screen relative overflow-hidden">
-        <div className="absolute inset-0">
-          <Aurora 
-            colorStops={["#5227FF", "#7cff67", "#5227FF"]}
-            amplitude={1.2}
-            blend={0.6}
-          />
-        </div>
-        <div className="hero-gradient"></div>
-        <div className="relative z-20 h-full flex items-center justify-center px-4">
-          <motion.div 
+      <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <Aurora />
+        <div className="max-w-6xl mx-auto px-4 relative z-10">
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
             className="text-center"
           >
             <motion.h1 
-              initial={{ opacity: 0, scale: 0.5, y: -50 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ 
-                duration: 1.2,
-                type: "spring",
-                stiffness: 100,
-                damping: 10
-              }}
-              className="section-title"
+              className="text-4xl md:text-6xl font-bold mb-4 gradient-text"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
             >
               Fadi Shqerat
             </motion.h1>
-            <motion.p 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-              className="text-xl md:text-2xl lg:text-3xl text-gray-300 mb-8"
+            <motion.h2 
+              className="text-2xl md:text-3xl mb-8 text-gray-300"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
             >
               Full Stack Developer
-            </motion.p>
+            </motion.h2>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7 }}
-              className="flex justify-center gap-4"
+              transition={{ duration: 0.8, delay: 0.8 }}
+              className="flex flex-wrap justify-center gap-4"
             >
               <a href="#projects" className="btn-primary">
                 View Projects
@@ -126,32 +114,6 @@ const Home = () => {
             </motion.div>
           </motion.div>
         </div>
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="text-gray-400"
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 14l-7 7m0 0l-7-7m7 7V3"
-              />
-            </svg>
-          </motion.div>
-        </motion.div>
       </section>
 
       {/* About Section */}
@@ -185,7 +147,14 @@ const Home = () => {
           transition={{ duration: 1 }}
           className="max-w-6xl mx-auto px-4"
         >
-          <h2 className="section-title">Skills</h2>
+          <motion.h2 
+            className="section-title"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            Skills
+          </motion.h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-8">
             {[
               'React',
@@ -208,10 +177,11 @@ const Home = () => {
             ].map((skill, index) => (
               <motion.div
                 key={skill}
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0, y: 50, scale: 0.8 }}
                 whileInView={{ 
                   opacity: 1, 
                   y: 0,
+                  scale: 1,
                   transition: {
                     duration: 0.5,
                     delay: index * 0.1,
@@ -221,11 +191,28 @@ const Home = () => {
                 }}
                 whileHover={{ 
                   scale: 1.05,
-                  transition: { duration: 0.3 }
+                  rotate: 2,
+                  transition: { 
+                    duration: 0.3,
+                    type: "spring",
+                    stiffness: 200
+                  }
                 }}
-                className="skill-card"
+                className="skill-card group"
               >
-                <p className="text-lg md:text-xl font-semibold text-white">{skill}</p>
+                <motion.p 
+                  className="text-lg md:text-xl font-semibold text-white"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 400 }}
+                >
+                  {skill}
+                </motion.p>
+                <motion.div 
+                  className="skill-glow"
+                  initial={{ opacity: 0 }}
+                  whileHover={{ opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                />
               </motion.div>
             ))}
           </div>
