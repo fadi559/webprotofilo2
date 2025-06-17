@@ -205,14 +205,12 @@ const Home = () => {
                 className="glass p-6 md:p-8 rounded-xl"
               >
                 <p className="text-lg md:text-xl text-gray-300 mb-6">
-                  I&apos;m a passionate Full Stack Developer with expertise in React, Next.js, and Node.js.
-                  I love creating modern, responsive web applications and mobile apps that provide
-                  exceptional user experiences.
-                </p>
-                <p className="text-lg md:text-xl text-gray-300">
-                  With a strong foundation in both frontend and backend development,
-                  I strive to build scalable and efficient solutions that solve real-world problems.
-                </p>
+  I&apos;m a passionate Full Stack Developer with 2 years of experience building modern, responsive web and mobile applications. I specialize in creating intuitive user interfaces and seamless user experiences using technologies.
+</p>
+<p className="text-lg md:text-xl text-gray-300">
+  With a strong foundation in both frontend and backend development, I focus on delivering scalable, efficient, and real-world solutions that solve meaningful problems and make a lasting impact.
+</p>
+
               </motion.div>
             </motion.div>
           </section>
