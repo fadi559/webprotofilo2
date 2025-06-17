@@ -100,6 +100,15 @@ export const Card = ({
   );
 };
 
+interface Project {
+  image: string;
+  title: string;
+  description: string;
+  tags: string[];
+  githubUrl: string;
+  demoUrl: string;
+}
+
 const AnimatedProjects = () => {
   return (
     <section className="py-20 relative">
@@ -116,31 +125,31 @@ const AnimatedProjects = () => {
           <div className="h-[20rem] md:h-[25rem] max-w-2xl mx-auto w-full">
             <TiltedCard
               image="/screenShotTemo.png"
-              title="Next.js E-commerce Platform"
-              description="A full-stack e-commerce platform with real-time inventory management"
-              tags={["Next.js", "TypeScript", "Prisma", "PostgreSQL"]}
-              githubUrl="https://github.com/fadi559/temoupro"
-              demoUrl="https://temoupro.vercel.app/"
+              title="React Native Job Search App"
+              description="A mobile application built with React Native that helps users find and apply for jobs. Features include job search, filtering, and application tracking."
+              tags={["React Native", "Firebase", "Redux"]}
+              githubUrl="https://github.com/yourusername/job-search-app"
+              demoUrl="https://job-search-app-demo.com"
             />
           </div>
           <div className="h-[20rem] md:h-[25rem] max-w-2xl mx-auto w-full">
-             <TiltedCard
+            <TiltedCard
               image="/AppIcon~ios-marketing.png"
-              title="React Native Job Search App"
-              description="A job search mobile app with Face ID login and advanced filters"
-              tags={["React Native", "Node.js", "MongoDB"]}
-              githubUrl="https://github.com/fadi559/Appjob"
-              
+              title="Next.js E-commerce Platform"
+              description="A full-stack e-commerce platform built with Next.js, featuring product catalog, shopping cart, and secure checkout."
+              tags={["Next.js", "Node.js", "MongoDB"]}
+              githubUrl="https://github.com/yourusername/ecommerce-platform"
+              demoUrl="https://ecommerce-platform-demo.com"
             />
           </div>
           <div className="h-[20rem] md:h-[25rem] max-w-2xl mx-auto w-full">
             <TiltedCard
               image="/AppIcon~ios-marketing.png"
               title="Node.js Backend API"
-              description="A scalable REST API with authentication and real-time features"
-              tags={["Node.js", "Express", "MongoDB", "Socket.io"]}
-              githubUrl="https://github.com/fadi559/FadiNodejss"
-                    
+              description="A robust RESTful API built with Node.js and Express, featuring authentication, data validation, and error handling."
+              tags={["Node.js", "Express", "PostgreSQL"]}
+              githubUrl="https://github.com/yourusername/backend-api"
+              demoUrl="https://api-docs.example.com"
             />
           </div>
         </div>

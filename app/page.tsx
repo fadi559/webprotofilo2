@@ -30,7 +30,7 @@ import { BiLogoPostgresql } from "react-icons/bi";
 import AnimatedProjects from './components/AnimatedProjects'
 import { TypeAnimation } from 'react-type-animation';
 import { AuroraBackground } from './components/AuroraBackground'
-import BackgroundBeams from './components/BackgroundBeams';
+
 
 
 const FloatingActionButton = () => {
@@ -261,74 +261,70 @@ const Home = () => {
             </div>
           </section>
 
-
-         
           {/* Projects Section */}
-          // <AnimatedProjects />
+          <AnimatedProjects />
 
-      
-        {/* Download CV Section */}
-        <section className="py-20 relative">
-          <motion.div 
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            className="max-w-4xl mx-auto px-6 text-center bg-black/40 border border-white/10 backdrop-blur-md rounded-2xl p-10 shadow-xl"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Download My CV
-            </h2>
-            <p className="text-neutral-300 text-base md:text-lg mb-6">
-              Want to know more about my experience and skills? Download my CV to learn more.
-            </p>
-            <a
-              href="/NewstCV.pdf"
-              download
-              className="inline-block bg-gradient-to-r from-blue-500 to-purple-500 text-white font-medium px-6 py-3 rounded-full shadow-lg hover:scale-105 transition-transform duration-300"
+          {/* Download CV Section */}
+          <section className="py-20 relative">
+            <motion.div 
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1 }}
+              className="max-w-4xl mx-auto px-6 text-center bg-black/40 border border-white/10 backdrop-blur-md rounded-2xl p-10 shadow-xl"
             >
-              📄 Download CV
-            </a>
-          </motion.div>
-        </section>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                Download My CV
+              </h2>
+              <p className="text-neutral-300 text-base md:text-lg mb-6">
+                Want to know more about my experience and skills? Download my CV to learn more.
+              </p>
+              <a
+                href="/NewstCV.pdf"
+                download
+                className="inline-block bg-gradient-to-r from-blue-500 to-purple-500 text-white font-medium px-6 py-3 rounded-full shadow-lg hover:scale-105 transition-transform duration-300"
+              >
+                📄 Download CV
+              </a>
+            </motion.div>
+          </section>
 
-        {/* Contact Section */}
-        <section id="contact" className="py-20 relative">
-          <motion.div 
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            className="max-w-4xl mx-auto px-6 text-center bg-black/40 border border-white/10 backdrop-blur-md rounded-2xl p-10 shadow-xl"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Get In Touch
-            </h2>
-            <p className="text-neutral-300 text-base md:text-lg mb-8">
-              Have a project in mind? Let's discuss how we can work together.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <a
-                href="mailto:fadishqerat54@icloud.com"
-                className="bg-blue-600 hover:bg-blue-700 transition-colors px-6 py-3 rounded-full text-white font-semibold shadow-md"
-              >
-                📧 Email Me
-              </a>
-              <a
-                href="https://www.linkedin.com/in/fadi-shqerat-60877a254"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-white text-black hover:bg-neutral-200 transition-colors px-6 py-3 rounded-full font-semibold shadow-md"
-              >
-                🔗 LinkedIn
-              </a>
-            </div>
-          </motion.div>
-        </section>
+          {/* Contact Section */}
+          <section id="contact" className="py-20 relative">
+            <motion.div 
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1 }}
+              className="max-w-4xl mx-auto px-6 text-center bg-black/40 border border-white/10 backdrop-blur-md rounded-2xl p-10 shadow-xl"
+            >
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                Get In Touch
+              </h2>
+              <p className="text-neutral-300 text-base md:text-lg mb-8">
+                Have a project in mind? Let&apos;s discuss how we can work together.
+              </p>
+              <div className="flex flex-col sm:flex-row justify-center gap-4">
+                <a
+                  href="mailto:fadishqerat54@icloud.com"
+                  className="bg-blue-600 hover:bg-blue-700 transition-colors px-6 py-3 rounded-full text-white font-semibold shadow-md"
+                >
+                  📧 Email Me
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/fadi-shqerat-60877a254"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white text-black hover:bg-neutral-200 transition-colors px-6 py-3 rounded-full font-semibold shadow-md"
+                >
+                  🔗 LinkedIn
+                </a>
+              </div>
+            </motion.div>
+          </section>
         </div>
         <FloatingActionButton />
-
-         </AuroraBackground>
+        </AuroraBackground>
       </main>
-   
+  
   )
 }
 
