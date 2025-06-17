@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Script from "next/script";
-import Aurora from './components/Aurora';
+import { AuroraBackground } from "./components/AuroraBackground";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,22 +17,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-black text-white min-h-screen`}>
-        <Aurora
-          colorStops={[
-            { color: "#5227FF", position: 0 },
-            { color: "#7cff67", position: 0.5 },
-            { color: "#5227FF", position: 1 }
-          ]}
-          blend={0.5}
-          amplitude={1.0}
-        />
-        <Script
-          src="https://cloud.umami.is/script.js"
-          data-website-id="9660e74e-d640-4b15-81f7-d1a43685f58b"
-          strategy="beforeInteractive"
-        />
-        {children}
+      <body className={inter.className}>
+        <AuroraBackground className="min-h-screen bg-black text-white">
+          {children}
+        </AuroraBackground>
       </body>
     </html>
   );
