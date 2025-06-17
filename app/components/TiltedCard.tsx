@@ -9,7 +9,7 @@ interface TiltedCardProps {
   description: string;
   image: string;
   githubUrl: string;
-  demoUrl: string;
+  demoUrl?: string;
   tags: string[];
 }
 
@@ -50,14 +50,16 @@ const TiltedCard = ({ title, description, image, githubUrl, demoUrl, tags }: Til
               >
                 <FaGithub className="text-xl" />
               </a>
-              <a
-                href={demoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors"
-              >
-                <FaExternalLinkAlt className="text-xl" />
-              </a>
+              {demoUrl && (
+                <a
+                  href={demoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors"
+                >
+                  <FaExternalLinkAlt className="text-xl" />
+                </a>
+              )}
             </div>
           </div>
         </div>

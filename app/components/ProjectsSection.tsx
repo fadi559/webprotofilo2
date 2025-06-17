@@ -32,7 +32,7 @@ const ProjectsSection = () => {
               description="A job search mobile app with Face ID login and advanced filters"
               tags={["React Native", "Node.js", "MongoDB"]}
               githubUrl="https://github.com/fadi559/Appjob"
-              demoUrl="https://github.com/fadi559/Appjob"
+              
             />
           </motion.div>
 
@@ -78,7 +78,7 @@ const ProjectsSection = () => {
               description="A scalable REST API with authentication and real-time features"
               tags={["Node.js", "Express", "MongoDB", "Socket.io"]}
               githubUrl="https://github.com/fadi559/FadiNodejss"
-               demoUrl={''}             
+                    
             />
           </motion.div>
         </div>
