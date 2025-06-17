@@ -190,7 +190,7 @@ const Home = () => {
 
           {/* About Section */}
           <section id="about" className="py-12 md:py-20 relative z-10">
-            <div className="section-gradient"></div>
+            <div className=""></div>
             <motion.div 
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -218,7 +218,7 @@ const Home = () => {
           </section>
 
           {/* Skills Section */}
-          <section className="py-20 px-8 bg-black/50">
+          <section className="">
             <h2 className="text-4xl font-bold text-center mb-12">Skills</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 max-w-7xl mx-auto">
               {[
