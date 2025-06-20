@@ -231,13 +231,13 @@ const Home = () => {
                 { icon: <SiCss3 className="text-4xl" />, name: "CSS3" },
                 { icon: <FaChartLine className="text-4xl" />, name: "Umami" },
               ].map((skill, index) => (
-                // <BackgroundBeamsWithCollision  className="skill-card group" key={skill.name}>
+                
                 <motion.div
                   key={skill.name}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                   className="skill-card group"
+                 className="skill-card group"
                 >
                   <div className="skill-icon">{skill.icon}</div>
                   <h3 className="text-lg font-semibold mt-2">{skill.name}</h3>
@@ -309,6 +309,7 @@ const Home = () => {
               </div>
             </motion.div>
           </section>
+          
         </div>
         <FloatingActionButton />
         </AuroraBackground>
