@@ -29,19 +29,21 @@ const TiltedCard = ({ title, description, image, githubUrl, demoUrl, tags }: Til
           className="object-cover transition-transform duration-500 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-black/60 md:bg-black/0 md:group-hover:bg-black/60 transition-all duration-300">
-          <div className="absolute inset-0 flex flex-col justify-center items-center p-4 text-white">
+          <div className="absolute inset-0 flex flex-col justify-center items-center p-4 text-white text-center">
             <h3 className="text-lg md:text-xl font-bold mb-2 text-center">{title}</h3>
             <p className="text-xs md:text-sm text-center mb-2 opacity-0 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
               {description}
             </p>
-            <div className="flex flex-wrap gap-1 justify-center mb-2">
-              {tags.map((tag, index) => (
-                <span key={index} className="bg-white/20 px-1.5 py-0.5 rounded text-[10px] md:text-xs">
-                  {tag}
-                </span>
-              ))}
+            <div className="w-full mb-2 flex justify-center">
+              <div className="flex flex-wrap justify-center items-center gap-1 max-w-full">
+                {tags.map((tag, index) => (
+                  <span key={index} className="bg-white/20 px-1.5 py-0.5 rounded text-[10px] md:text-xs text-center flex-shrink-0">
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
-            <div className="flex gap-2 mt-2">
+            <div className="flex gap-2 mt-2 justify-center">
               <a
                 href={githubUrl}
                 target="_blank"
