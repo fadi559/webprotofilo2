@@ -3,33 +3,17 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef, useState, useEffect } from 'react'
 import Navbar from './components/Navbar'
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+
 import { 
-  SiTypescript, 
-  SiJavascript, 
-  SiReact, 
-  SiNodedotjs, 
-  SiMongodb, 
-  SiTailwindcss,
-  SiNextdotjs,
-  SiExpress,
-  SiRedux,
-  SiFirebase,
-  SiGit,
-  SiVercel,
-  SiPostman,
-  SiStripe,
-  SiXcode,
-  SiAndroidstudio,
-  SiHtml5,
-  SiCss3,
-  SiSanity,
-  SiPrisma
+  SiTypescript, SiJavascript,SiReact, SiNodedotjs,  SiMongodb,  SiTailwindcss,SiNextdotjs,SiExpress,SiRedux,SiFirebase, SiGit, SiVercel, SiPostman,SiStripe, SiXcode, SiAndroidstudio, SiHtml5, SiCss3, SiSanity, SiPrisma
 } from "react-icons/si";
 import { FaReact, FaLayerGroup, FaChartLine } from "react-icons/fa";
 import { BiLogoPostgresql } from "react-icons/bi";
 import AnimatedProjects from './components/AnimatedProjects'
 import { TypeAnimation } from 'react-type-animation';
 import { AuroraBackground } from './components/AuroraBackground'
+import { BackgroundBeamsWithCollision } from './components/BackgroundBeamsWithCollision';
+
 
 
 
@@ -93,19 +77,14 @@ const Home = () => {
           style={{ opacity, scale, y }}
           className="fixed inset-0 z-0"
         >
-          {/* <Aurora
-            amplitude={0.5}
-            blend={0.5}
-            colorStops={[
-              { color: "#ff0000", position: 0 },
-              { color: "#00ff00", position: 0.5 },
-              { color: "#0000ff", position: 1 },
-            ]}
-          /> */}
+          
         </motion.div>
 
         <div className="relative z-10">
           <Navbar />
+
+
+    
           
           {/* Hero Section */}
           <section className="min-h-screen flex items-center justify-center p-8 relative overflow-hidden">
@@ -189,6 +168,7 @@ const Home = () => {
           </section>
 
           {/* About Section */}
+        
           <section id="about" className="py-12 md:py-20 relative z-10">
             <div className=""></div>
             <motion.div 
@@ -198,11 +178,12 @@ const Home = () => {
               className="max-w-6xl mx-auto px-4"
             >
               <h2 className="section-title">About Me</h2>
+                <BackgroundBeamsWithCollision className=" p-6 md:p-3 rounded-xl" >
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="glass p-6 md:p-8 rounded-xl"
+                className=" p-6 md:p-8 rounded-xl"
               >
                 <p className="text-lg md:text-xl text-gray-300 mb-6">
   I&apos;m a passionate Full Stack Developer with 2 years of experience building modern, responsive web and mobile applications. I specialize in creating intuitive user interfaces and seamless user experiences using technologies.
@@ -212,13 +193,18 @@ const Home = () => {
 </p>
 
               </motion.div>
+              </BackgroundBeamsWithCollision>
             </motion.div>
           </section>
+          
 
           {/* Skills Section */}
+         
           <section className="">
+            
             <h2 className="text-4xl font-bold text-center mb-12">Skills</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 max-w-7xl mx-auto">
+              
               {[
                 { icon: <SiTypescript className="text-4xl" />, name: "TypeScript" },
                 { icon: <SiJavascript className="text-4xl" />, name: "JavaScript" },
@@ -245,19 +231,24 @@ const Home = () => {
                 { icon: <SiCss3 className="text-4xl" />, name: "CSS3" },
                 { icon: <FaChartLine className="text-4xl" />, name: "Umami" },
               ].map((skill, index) => (
+                // <BackgroundBeamsWithCollision  className="skill-card group" key={skill.name}>
                 <motion.div
                   key={skill.name}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="skill-card group"
+                   className="skill-card group"
                 >
                   <div className="skill-icon">{skill.icon}</div>
                   <h3 className="text-lg font-semibold mt-2">{skill.name}</h3>
                 </motion.div>
+              
+              
               ))}
             </div>
+            
           </section>
+        
 
           {/* Projects Section */}
           <AnimatedProjects />
